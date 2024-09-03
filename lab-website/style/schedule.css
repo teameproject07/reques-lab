@@ -1,0 +1,132 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.site-header {
+    background-color: #4a90e2; /* Primary header color */
+    color: #fff; /* Text color */
+    padding: 20px;
+    border-bottom: 2px solid #2c3e50; /* Header bottom border color */
+    text-align: center;
+}
+
+.site-header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Button Group Styles */
+.button-group {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.btn {
+    background-color: #4a90e2; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #357abd; /* Button hover color */
+}
+
+.it { background-color: #5cb85c; }
+.civil { background-color: #f0ad4e; }
+.normal { background-color: #d9534f; }
+
+.request-btn {
+    background-color: #d9534f; /* Red button color */
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+    transition: background-color 0.3s;
+}
+
+.request-btn:hover {
+    background-color: #c9302c; /* Darker red on hover */
+}
+
+/* Footer Styles */
+.site-footer {
+    background-color: #2c3e50; /* Footer background color */
+    color: #fff; /* Footer text color */
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.site-footer p {
+    margin: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .site-header h1 {
+        font-size: 1.5rem;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 5px 0;
+    }
+
+    .button-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .request-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+}

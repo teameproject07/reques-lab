@@ -1,0 +1,252 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Body Styling */
+body {
+    background-color: #5b5858;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header Styling */
+.header {
+    background-color: #218838;
+    color: white;
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.header .menu {
+    display: flex;
+    gap: 15px;
+}
+
+.header .menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.header .menu a:hover {
+    text-decoration: underline;
+}
+
+.header .back-button {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    padding-right: 20px;
+}
+
+/* Schedule Table */
+.schedule {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px 0;
+    overflow-x: auto;
+}
+
+.schedule table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.schedule th, .schedule td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.schedule th {
+    background-color: #218838;
+    color: white;
+}
+
+.schedule td {
+    background-color: #fff;
+    font-size: 14px;
+}
+
+.schedule tr:nth-child(even) td {
+    background-color: #f9f9f9;
+}
+
+/* Table Responsive Container */
+.table-responsive {
+    width: auto;
+    padding: 10px 100px;
+    margin: 30px;
+    background-color: #faf8f8; /* Lighter background color */
+    border: 1px solid #9d9d9d;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(80, 78, 78, 0.1);
+    overflow-x: auto;
+    margin-bottom: 70px;
+}
+
+/* Titles and Other Text */
+h3 {
+    color: #333;
+    text-align: center;
+    line-height: 1.5;
+    margin: 20px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+p {
+    color: #4f4e4e;
+    text-align: center;
+    line-height: 1.5;
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+/* Titles Section */
+.titles {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    width: 90%;
+}
+
+.tital1,
+.tital2 {
+    justify-content: flex-end;
+}
+
+.tital3 {
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px 0;
+    width: 90%;
+}
+
+/* Footer Styling */
+.site-footer {
+    background-color: #333;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+.site-footer p {
+    margin: 0;
+    font-size: 1rem;
+    color: #fcf9f9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 20px;
+    }
+
+    .header .menu {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .header .menu a {
+        font-size: 14px;
+    }
+
+    .header .back-button {
+        font-size: 20px;
+    }
+
+    .schedule th, .schedule td {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .table-responsive {
+        padding: 20px;
+        margin: 20px 10px;
+    }
+
+    .titles, .tital3 {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    p {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .header h1 {
+        font-size: 18px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .header .menu {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header .menu a {
+        font-size: 12px;
+    }
+
+    .header .back-button {
+        font-size: 18px;
+    }
+
+    .schedule th, .schedule td {
+        padding: 8px;
+        font-size: 10px;
+    }
+
+    .table-responsive {
+        padding: 10px;
+        margin: 10px 5px;
+    }
+
+    .titles, .tital3 {
+        width: 100%;
+    }
+
+    h3 {
+        font-size: 14px;
+    }
+
+    p {
+        font-size: 10px;
+    }
+}
+
+/* Date Styling */
+.date {
+    color: red;
+}

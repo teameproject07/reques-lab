@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>normail lab</title>
+    <link rel="stylesheet" href="style/lab-computer.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <button class="back-button" onclick="goBack()">⬅ កាលវិភាគ</button>
+            <h1>ការងារសម្រាប់ប្រព័ន្ធសាលា Computer សំណង់សុីវិល</h1>
+            <button class="user-info">user information</button>
+        </header>
+
+        <!-- Search Section -->
+        <div class="search-section">
+            <input type="text" id="search" placeholder="Search by name">
+            <button id="search-button">Search</button>
+        </div>
+
+        <!-- Table Section -->
+        <table>
+            <thead>
+                <tr>
+                    <th>ល.រ</th>
+                    <th>ការងារ</th>
+                    <th>Lap</th>
+                    <th>ឈ្មោះសក្តានុពល</th>
+                    <th>ថ្ងៃ</th>
+                    <th>ខេត្ត</th>
+                    <th>ការមើលប្រព័ន្ធ</th>
+                    <th>Session</th>
+                    <th>មុខងារ</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data Rows 
+                 Example Row:  -->
+                <tr>
+                    <td>1</td>
+                    <td>...</td>
+                    <td>...</td>
+                    <td>...</td>
+                    <td>...</td>
+                    <td>...</td>
+                    <td>...</td>
+                    <td>...</td>
+                    <td>...</td>
+                    <td>
+                        <button class="update-button">Update</button>
+                        <button class="delete-button">Delete</button>
+                    </td>
+                </tr>
+               
+            </tbody>
+        </table>
+    </div>
+
+    <script src="javaScript/lab-computer.js"></script>
+</body>
+</html>

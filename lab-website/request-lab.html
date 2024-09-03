@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ស្នើរសុំប្រើប្រាស់សាល Computer</title>
+    <link rel="stylesheet" href="style/request-lab.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+<body>
+    
+     <!-- Header Section -->
+     <header class="site-header">
+        <div class="back-button-container">
+            <button class="back-button" onclick="history.back()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+        </div>
+        
+        <div class="container">
+            <h1>ស្នើរសុំប្រើប្រាស់សាល Computer</h1>
+        </div>
+    </header>
+    <div class="form-container">
+        
+        <form id="computer-form">
+            <div class="form-group">
+                <label for="date">កាលបរិច្ឆេទ:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="school">សាលា Computer:</label>
+                <select id="school" name="school" required>
+                    <option value="" disabled selected>ជ្រើសរើសសាលា Computer</option>
+                    <option value="school1">សាលា 1</option>
+                    <option value="school2">សាលា 2</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="major">ជំនាញ:</label>
+                <input type="text" id="major" name="major" required>
+            </div>
+
+            <div class="form-group">
+                <label for="class">ជំនាន់:</label>
+                <input type="text" id="class" name="class" required>
+            </div>
+
+            <div class="form-group">
+                <label for="teacher">ឈ្មោះសាស្រ្តាចារ្យ:</label>
+                <input type="text" id="teacher" name="teacher" required>
+            </div>
+
+            <div class="form-group">
+                
+                <label for="session">Start:</label>
+                <select id="session" name="session" required>
+                    <option value="" disabled selected>ជ្រើសរើស Session</option>
+                    <option value="session1">Session 1  ម៉ោង 7:00 - 8:30</option>
+                    <option value="session2">Session 2  ម៉ោង 8:50 - 10:30</option>
+                    <option value="session3">Session 3  ម៉ោង 10:50 - 12:30</option>
+                </select>
+                <label for="NumberSession">ចំនួន Session:</label>
+                <input type="text" id="NumberSession" name="NumberSession" required>
+            </div>
+
+            <div class="form-group">
+                <label for="app">App:</label>
+                <input type="text" id="app" name="app" required>
+            </div>
+
+            <div class="form-group">
+                <label for="students">ចំនួននិស្សិត:</label>
+                <input type="number" id="students" name="students" required>
+            </div>
+
+            <div class="form-group">
+                <label for="subject">មុខវិជ្ជា:</label>
+                <input type="text" id="subject" name="subject" required>
+            </div>
+
+            <div class="form-group">
+                <label for="others">ផ្សេងៗ:</label>
+                <input type="text" id="others" name="others">
+            </div>
+
+            <button type="submit" class="submit-button">សំរាប់ស្នើ</button>
+        </form>
+    </div>
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 Dong Darong. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="javaScript/request-lab.js"></script>
+</body>
+</html>

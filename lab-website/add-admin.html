@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style/add-admin.css"> <!-- Link to your external CSS file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="site-header">
+        <div class="container">
+            <h1>Add Admin</h1>
+        </div>
+    </header>
+
+    <!-- Form Section -->
+    <div class="form-container">
+        <form id="admin-form" action="#" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="first-name">First Name:</label>
+                <input type="text" id="first-name" name="first-name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="last-name">Last Name:</label>
+                <input type="text" id="last-name" name="last-name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="" disabled selected>Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" required>
+            </div>
+
+            <div class="form-group">
+                <label for="photo">Photo:</label>
+                <input type="file" id="photo" name="photo" accept="image/*" required>
+                <div id="photo-preview"></div> <!-- Photo Preview Container -->
+            </div>
+            <div class="form-group">
+                <button type="button" class="Next">Next</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+<script>
+    // Validate form before submitting
+    document.querySelector('.Next').addEventListener('click', function() {
+        const form = document.getElementById('admin-form');
+        if (form.checkValidity()) {
+            // If the form is valid, navigate to the next page
+            window.location.href = "add-admin-pw-em.html";
+        } else {
+            // If the form is not valid, show a validation message
+            alert('Please fill out all required fields correctly.');
+        }
+    });
+
+    // Preview the uploaded photo
+    document.getElementById('photo').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('photo-preview').innerHTML = `<img src="${e.target.result}" alt="Photo Preview" style="max-width: 100px; max-height: 100px; margin-top: 10px; border-radius: 10px;">`;
+            };
+            reader.readAsDataURL(file);
+        } else {
+            document.getElementById('photo-preview').innerHTML = '';
+        }
+    });
+</script>
+</body>
+</html>

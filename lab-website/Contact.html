@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="style/Contact.css"> <!-- Assuming your CSS file is named styles.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+   <!-- Header Section -->
+   <header class="site-header">
+        
+    <div class="container">
+        <h1>Cotact Us</h1>
+    </div>
+
+    <!-- Navigation Links -->
+    <nav class="nav-links">
+        <ul>
+            <li><a href="schedule-user.html">Home</a></li>
+            <li><a href="Contact.html">Contact</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="Profile.html">Profile</a></li>
+            <li><a href="index.html">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <section class="contact-section">
+        <h3>Get in Touch</h3>
+        <p>If you have any questions or inquiries, feel free to contact us using the form below.</p>
+
+        <form class="contact-form" action="#" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+    
+
+    <!-- Question Mark Icon and Info Overlay -->
+<div class="info-container">
+    <div class="info-icon" onclick="toggleInfo()"><i class="fa-solid fa-question"></i></div>
+    <div class="info-overlay" id="infoOverlay">
+        <div class="info-content">
+            <span class="close-btn" onclick="toggleInfo()">&times;</span>
+            <h2>About This Website</h2>
+            <p>This website is designed to provide information and services to our users. If you have any questions or need assistance, feel free to reach out using the contact form.</p>
+        </div>
+    </div>
+</div>
+
+    <footer class="site-footer">
+        <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+    </footer>
+    <script>
+        
+function toggleInfo() {
+    var overlay = document.getElementById('infoOverlay');
+    if (overlay.style.display === 'flex') {
+        overlay.style.display = 'none';
+    } else {
+        overlay.style.display = 'flex';
+    }
+}
+
+
+</script>
+
+    
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification Code</title>
+    <link rel="stylesheet" href="style/codes.css">
+</head>
+<body>
+    <div class="container">
+        <div class="verification-box">
+            <h2>Verify the code received from the email</h2>
+            <p>rong2222@gmail.com</p>
+            <div class="timer" id="timer">1:00 seconds remaining</div>
+            <form id="verification-form">
+                <label for="code">Enter Code</label>
+                <div class="code-inputs">
+                    <input type="text" maxlength="1" required>
+                    <input type="text" maxlength="1" required>
+                    <input type="text" maxlength="1" required>
+                    <input type="text" maxlength="1" required>
+                    <input type="text" maxlength="1" required>
+                    <input type="text" maxlength="1" required>
+                </div>
+                <button type="button" onclick="validateCode()">Confirm</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Custom alert box -->
+    <div class="overlay" id="overlay"></div>
+    <div class="alert-box" id="alert-box">
+        <h3 id="alert-message"></h3>
+        <button onclick="closeAlert()">OK</button>
+    </div>
+
+    <script src="javaScript/codes.js"></script>
+</body>
+</html>
