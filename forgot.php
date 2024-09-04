@@ -9,6 +9,7 @@ if(!$con = mysqli_connect("localhost","root","","forgot_db")){
     if(isset($_GET['mode'])){
         $mode = $_GET['mode'];
     }
+    
     if(count($_POST) > 0){
         switch ($mode) {
             case 'enter_email':
