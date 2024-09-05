@@ -6,10 +6,11 @@ CREATE TABLE User (
     Subject VARCHAR(100),
     Photo VARCHAR(255),
     Type ENUM('user', 'admin'),
-    Username VARCHAR(50) UNIQUE,
-    Email VARCHAR(100) UNIQUE,
+    Username VARCHAR(50),
+    Email VARCHAR(100) ,
     Password VARCHAR(255),
-    Date_time DATETIME
+    Date_time DATETIME,
+    phone VARCHAR(255),
 );
 
 CREATE TABLE Feedback (
