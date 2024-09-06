@@ -1,6 +1,6 @@
 CREATE DATABASE request_lab;
 CREATE TABLE users (
-    ID INT PRIMARY KEY NOT NULL AUTOINCREMENT,
+    ID INT PRIMARY KEY NOT NULL ,
     first_name VARCHAR(100),
     last_name VARCHAR(100),
     gender VARCHAR(10),
@@ -15,35 +15,35 @@ CREATE TABLE users (
 );
 
 CREATE TABLE Feedback (
-    ID INT PRIMARY KEY NOT NULL AUTOINCREMENT,
+    ID INT PRIMARY KEY NOT NULL ,
     user_id INT,
     comments TEXT,
     date_time DATETIME,
-    FOREIGN KEY (user_id) REFERENCES user(ID)
+    FOREIGN KEY (user_id) REFERENCES users(ID)
 );
 
 CREATE TABLE Codes (
-    ID INT PRIMARY KEY NOT NULL AUTOINCREMENT,
+    ID INT PRIMARY KEY NOT NULL ,
     email VARCHAR(100) UNIQUE,
     code VARCHAR(100) UNIQUE,
     expire DATETIME UNIQUE
 );
 
 CREATE TABLE Lab (
-    ID INT PRIMARY KEY NOT NULL AUTOINCREMENT,
+    ID INT PRIMARY KEY NOT NULL ,
     name_lab VARCHAR(100),
     time TIME
 );
 
 CREATE TABLE Session (
-    ID INT PRIMARY KEY NOT NULL AUTOINCREMENT,
+    ID INT PRIMARY KEY NOT NULL ,
     sessions VARCHAR(100),
     number_Sessions INT,
     time TIME
 );
 
 CREATE TABLE Information (
-    ID INT PRIMARY KEY NOT NULL AUTOINCREMENT,
+    ID INT PRIMARY KEY NOT NULL ,
     user_id INT,
     date DATE,
     lab_id INT,
