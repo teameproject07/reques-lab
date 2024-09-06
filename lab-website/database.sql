@@ -1,4 +1,4 @@
-CREATE TABLE User (
+CREATE TABLE users (
     ID INT PRIMARY KEY,
     First_name VARCHAR(100),
     Last_name VARCHAR(100),
@@ -15,46 +15,46 @@ CREATE TABLE User (
 
 CREATE TABLE Feedback (
     ID INT PRIMARY KEY,
-    User_id INT,
-    Comments TEXT,
-    Date_time DATETIME,
-    FOREIGN KEY (User_id) REFERENCES User(ID)
+    user_id INT,
+    comments TEXT,
+    date_time DATETIME,
+    FOREIGN KEY (user_id) REFERENCES user(ID)
 );
 
 CREATE TABLE Codes (
     ID INT PRIMARY KEY,
-    User_id INT,
-    Email VARCHAR(100),
-    Code VARCHAR(100),
-    Expire DATETIME,
-    FOREIGN KEY (User_id) REFERENCES User(ID)
+    user_id INT,
+    email VARCHAR(100),
+    code VARCHAR(100),
+    expire DATETIME,
+    FOREIGN KEY (user_id) REFERENCES user(ID)
 );
 
 CREATE TABLE Lab (
     ID INT PRIMARY KEY,
-    Name_lab VARCHAR(100),
-    Time TIME
+    name_lab VARCHAR(100),
+    time TIME
 );
 
 CREATE TABLE Session (
     ID INT PRIMARY KEY,
-    Sessions VARCHAR(100),
-    Number_Sessions INT,
-    Time TIME
+    sessions VARCHAR(100),
+    number_Sessions INT,
+    time TIME
 );
 
 CREATE TABLE Information (
     ID INT PRIMARY KEY,
-    User_id INT,
-    Date DATE,
-    Lab_id INT,
-    Generation VARCHAR(50),
-    Session_id INT,
-    App VARCHAR(100),
-    Number_students INT,
-    Subject VARCHAR(100),
-    Other TEXT,
-    FOREIGN KEY (User_id) REFERENCES User(ID),
-    FOREIGN KEY (Lab_id) REFERENCES Lab(ID),
-    FOREIGN KEY (Session_id) REFERENCES Session(ID)
+    user_id INT,
+    date DATE,
+    lab_id INT,
+    generation VARCHAR(50),
+    session_id INT,
+    app VARCHAR(100),
+    number_students INT,
+    subject VARCHAR(100),
+    other TEXT,
+    FOREIGN KEY (user_id) REFERENCES user(ID),
+    FOREIGN KEY (lab_id) REFERENCES lab(ID),
+    FOREIGN KEY (session_id) REFERENCES session(ID)
 );
