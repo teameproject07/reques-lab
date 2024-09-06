@@ -1,60 +1,59 @@
-CREATE TABLE User (
-    ID INT PRIMARY KEY,
-    First_name VARCHAR(100),
-    Last_name VARCHAR(100),
-    Gender VARCHAR(10),
-    Subject VARCHAR(100),
-    Photo VARCHAR(255),
-    Type ENUM('user', 'admin'),
-    Username VARCHAR(50),
-    Email VARCHAR(100) ,
-    Password VARCHAR(255),
-    Date_time DATETIME,
+CREATE DATABASE request_lab;
+CREATE TABLE users (
+    ID INT PRIMARY KEY NOT NULL ,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    gender VARCHAR(10),
+    subject VARCHAR(100),
+    photo VARCHAR(255),
+    type ENUM('user', 'admin'),
+    username VARCHAR(50),
+    email VARCHAR(100) ,
+    password VARCHAR(255),
+    date_time DATETIME,
     phone VARCHAR(255),
 );
 
 CREATE TABLE Feedback (
-    ID INT PRIMARY KEY,
-    User_id INT,
-    Comments TEXT,
-    Date_time DATETIME,
-    FOREIGN KEY (User_id) REFERENCES User(ID)
+    ID INT PRIMARY KEY NOT NULL ,
+    user_id INT,
+    comments TEXT,
+    date_time DATETIME,
+    FOREIGN KEY (user_id) REFERENCES users(ID)
 );
 
 CREATE TABLE Codes (
-    ID INT PRIMARY KEY,
-    User_id INT,
-    Email VARCHAR(100),
-    Code VARCHAR(100),
-    Expire DATETIME,
-    FOREIGN KEY (User_id) REFERENCES User(ID)
+    ID INT PRIMARY KEY NOT NULL ,
+    email VARCHAR(100) UNIQUE,
+    code VARCHAR(100) UNIQUE,
+    expire DATETIME UNIQUE
 );
 
 CREATE TABLE Lab (
-    ID INT PRIMARY KEY,
-    Name_lab VARCHAR(100),
-    Time TIME
+    ID INT PRIMARY KEY NOT NULL ,
+    name_lab VARCHAR(100),
+    time TIME
 );
 
 CREATE TABLE Session (
-    ID INT PRIMARY KEY,
-    Sessions VARCHAR(100),
-    Number_Sessions INT,
-    Time TIME
+    ID INT PRIMARY KEY NOT NULL ,
+    sessions VARCHAR(100),
+    number_Sessions INT,
+    time TIME
 );
 
 CREATE TABLE Information (
-    ID INT PRIMARY KEY,
-    User_id INT,
-    Date DATE,
-    Lab_id INT,
-    Generation VARCHAR(50),
-    Session_id INT,
-    App VARCHAR(100),
-    Number_students INT,
-    Subject VARCHAR(100),
-    Other TEXT,
-    FOREIGN KEY (User_id) REFERENCES User(ID),
-    FOREIGN KEY (Lab_id) REFERENCES Lab(ID),
-    FOREIGN KEY (Session_id) REFERENCES Session(ID)
+    ID INT PRIMARY KEY NOT NULL ,
+    user_id INT,
+    date DATE,
+    lab_id INT,
+    generation VARCHAR(50),
+    session_id INT,
+    app VARCHAR(100),
+    number_students INT,
+    subject VARCHAR(100),
+    other TEXT,
+    FOREIGN KEY (user_id) REFERENCES users(ID),
+    FOREIGN KEY (lab_id) REFERENCES lab(ID),
+    FOREIGN KEY (session_id) REFERENCES session(ID)
 );
