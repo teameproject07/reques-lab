@@ -1,5 +1,5 @@
 <?php
-require 'forgot.php';
+include 'forgot.php';
 
 // Ensure $mode is defined
 $mode = isset($mode) ? $mode : 'enter_email';
@@ -111,7 +111,7 @@ $error = isset($error) ? $error : [];
                     }
                 ?>
                 </span>
-                <input class="textbox" type="email" name="email" placeholder="Email"><br>
+                <input class="textbox" type="email" name="email" placeholder="Email" required><br>
                 <input type="submit" value="Next">
                 <a href="login.php">Login</a>
             </form>
@@ -132,7 +132,7 @@ $error = isset($error) ? $error : [];
                     }
                 ?>
                 </span>
-                <input class="textbox" type="text" name="code" placeholder="Enter your code"><br>
+                <input class="textbox" type="text" name="code" placeholder="Enter your code" required><br>
                 <input type="submit" value="Next">
                 <a href="forgot.php"><input type="button" value="Start Over"></a>
                 <a href="login.php">Login</a>
@@ -154,8 +154,8 @@ $error = isset($error) ? $error : [];
                     }
                 ?>
                 </span>
-                <input class="textbox" type="password" name="password" placeholder="Password"><br>
-                <input class="textbox" type="password" name="password2" placeholder="Retype Password"><br>
+                <input class="textbox" type="password" name="password" placeholder="Password" required><br>
+                <input class="textbox" type="password" name="password2" placeholder="Retype Password" required><br>
                 <input type="submit" value="Next">
                 <a href="forgot.php"><input type="button" value="Start Over"></a>
                 <a href="login.php">Login</a>

@@ -2,12 +2,15 @@
 session_start();
 $error = array();
 require "mail.php";
-
-$con = mysqli_connect("localhost", "root", "", "forgot_db");
+// require "db_connection.php";
+// $con = mysqli_connect("localhost", "root", "", "forgot_db");
+// if (!$con) {
+//     die("Connection failed: " . mysqli_connect_error());
+// }
+$con = mysqli_connect("localhost", "root", "", "request_lab");
 if (!$con) {
     die("Connection failed: " . mysqli_connect_error());
 }
-
 $mode = "enter_email";
 if (isset($_GET['mode'])) {
     $mode = $_GET['mode'];
@@ -19,8 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $email = $_POST['email'];
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $error[] = "Please enter a valid email";
+                header("Location: code.php?mode=enter_email");
             } elseif (!valid_email($email)) {
                 $error[] = "That email was not found";
+                header("Location: code.php?mode=enter_email");
             } else {
                 $_SESSION['forgot']['email'] = $email;
                 send_email($email);
@@ -38,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 exit;
             } else {
                 $error[] = $result;
+                header("Location: code.php?mode=enter_code");
             }
             break;
 
@@ -68,7 +74,7 @@ function send_email($email)
 {
     global $con;
     $expire = time() + 60 * 15;  // Code expires in 15 minutes
-    $code = rand(10000, 99999);
+    $code = rand(100000, 999999);
     $email = mysqli_real_escape_string($con, $email);
 
     $query = "INSERT INTO codes (email, code, expire) VALUES ('$email', '$code', '$expire')";
@@ -105,7 +111,7 @@ function is_code_correct($code)
     $expire = time();
     $email = mysqli_real_escape_string($con, $_SESSION['forgot']['email']);
     
-    $query = "SELECT * FROM codes WHERE email = '$email' AND code = '$code' ORDER BY id DESC LIMIT 1";
+    $query = "SELECT * FROM codes WHERE email = '$email' AND code = '$code' ORDER BY ID DESC LIMIT 1";
     $result = mysqli_query($con, $query);
 
     if ($result && mysqli_num_rows($result) > 0) {
