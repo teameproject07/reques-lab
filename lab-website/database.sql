@@ -53,7 +53,7 @@ CREATE TABLE Information (
     number_students INT,
     subject VARCHAR(100),
     other TEXT,
-    FOREIGN KEY (user_id) REFERENCES user(ID),
+    FOREIGN KEY (user_id) REFERENCES users(ID),
     FOREIGN KEY (lab_id) REFERENCES lab(ID),
     FOREIGN KEY (session_id) REFERENCES session(ID)
 );
