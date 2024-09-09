@@ -1,48 +1,3 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://unpkg.com/gutenberg-css@0.6">
-    <style>
-        table {
-            width: 100%;
-        }
-        footer {
-            text-align: center;
-            font-style: italic;
-        }
-    </style>
-</head>
-<body>
-    
-    <img src="example.png">
-    
-    <h1>Invoice</h1>
-    
-    <p>Name: {{ name }}</p>
-    
-    <table>
-        <thead>
-            <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>A sample product</td>
-                <td style="text-align: right">{{ quantity }}</td>
-            </tr>
-        </tbody>
-    </table>
-    
-    <footer>
-        This is an example
-    </footer>
-    
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,17 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Discounts</title>
     <style>
+        @font-face {
+    font-family: 'Khmer';
+    src: url('fonts/Khmer-Regular.ttf') format('truetype'); /* Adjust the path as necessary */
+    font-weight: normal;
+    font-style: normal;
+}
+
+        body {
+            font-family: 'Khmer', Arial, sans-serif; 
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #333;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
         }
+
         th, td {
-            border: 1px solid black;
+            border: 1px solid #ddd;
             padding: 10px;
             text-align: center;
+            vertical-align: middle;
         }
+
         th {
-            background-color: #f2f2f2;
+            background-color: #007d33;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        td {
+            color: #333;
+            font-size: 16px;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f9f9f9;
+        }
+
+        tr:nth-child(odd) td {
+            background-color: #e7f4e4;
+        }
+
+        tr:first-child th {
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        tr:last-child td {
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
         }
     </style>
 </head>
@@ -78,7 +88,7 @@
             <th>3</th>
         </tr>
         <tr>
-            <td>Refrigerator</td>
+            <td>បង្កើត</td>
             <td>$20,000.00</td>
             <td>5%</td>
             <td>10%</td>
