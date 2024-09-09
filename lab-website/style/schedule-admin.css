@@ -77,7 +77,11 @@ body {
   transition: transform 0.3s, box-shadow 0.3s;
   
 }
-
+a{
+  text-decoration: none;
+  
+  
+}
 .card:hover {
   transform: translateY(-10px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -85,10 +89,8 @@ body {
 
 .card-title {
   margin-bottom: 15px;
-  font-size: 1.2em;
-  color: #333;
   text-decoration: none;
-  
+  color: #675e5e;
 }
 
 .card img {
