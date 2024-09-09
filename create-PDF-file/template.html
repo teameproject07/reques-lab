@@ -5,15 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Discounts</title>
     <style>
-        @font-face {
-            font-family: 'Khmer';
-            src: url('fonts/Khmer-Regular.ttf') format('truetype'); /* Adjust the path as necessary */
-            font-weight: normal;
-            font-style: normal;
-        }
-
         body {
-            font-family: 'Khmer', Arial, sans-serif; 
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             text-align: center;
             margin: 0;
             padding: 20px;
@@ -53,7 +46,7 @@
             color: white;
             font-weight: bold;
             font-size: 20px; /* Larger font for headers */
-            border-bottom: 3px solid #005a23; /* Subtle bottom border for the header */
+            border: 1px solid #9aa19d; /* Subtle bottom border for the header */
         }
 
         td {
@@ -63,11 +56,11 @@
         }
 
         tr:nth-child(even) td {
-            background-color: #f3f7f3; /* Light gray-green background for even rows */
+            background-color: #f3f7f3; 
         }
 
         tr:nth-child(odd) td {
-            background-color: #ffffff; /* White background for odd rows */
+            background-color: #ffffff; 
         }
 
         tr:first-child th:first-child {
@@ -95,49 +88,154 @@
         .footer-text span {
             color: #c00; /* Red for important text */
         }
+        span{
+            color: #cc3c3c;
+        }
+        .titles{
+            
+        }
     </style>
 </head>
 <body>
-    <h1>Product Discounts</h1>
-    <p>Name: {{ name }}</p>
-    <p>Quantity: {{ quantity }}</p>
+    <div class="titles">
+        <div class="tital1">
+        <h3>Kingdom of Cambodia <br>
+            Nation Religion King
+        </h3> 
+    
+    </div>
+    <div class="tital2">
+        <h3>
+            National University of Battambong <br>
+            Facuty of Science and Technolgy
+        </h3>
+        <!-- <p>Name: {{ name }}</p>
+        <p>Quantity: {{ quantity }}</p> -->
+    </div>
+    </div>
+    <div class="date">
+        <span>Monday</span>
+            <span>October</span>
+                <span>11</span>
+                    <span>2024</span>
+                        <span>(Afternoon)</span>
+    </div>
     <table>
         <tr>
-            <th>ច័ន្ទ</th>
-            <th>អង្គារ</th>
-            <th>ពុធ</th>
-            <th>ព្រហស្បត្តិ</th>
-            <th>សុក្រ</th>
-            <th>សៅរ៍​</th>
-            <td>អាទិត្យ</td>
+            <th>Time</th>
+            <th colspan="">Monday</th>
+            <th colspan="">Tuesday</th>
+            <th colspan="">Wednesday</th>
+            <th colspan="">Thursday</th>
+            <th colspan="">Friday</th>
+            <th colspan="">Saturday​</th>
+            <th colspan="">Sunday</th>
         </tr>
         <tr>
-            <td>មន្ត្រី</td>
-            <td>$20,000.00</td>
-            <td>5%</td>
-            <td>10%</td>
-            <td>15%</td>
-            <td>15%</td>
-            <td>15%</td>
+            <td>
+                Session 1 <br>
+                (7:00 - 8:30)
+            </td>
+            <td>
+                    Siv Heng <br>
+                <span>room 014</span>
+            </td>
+            <td>
+                    Hut Heng <br>
+                 <span>room 013</span>
+            </td>
+            <td>
+                    Siv Heng <br>
+                 <span>room 014</span>
+            </td>
+            <td>
+                    Seng lang <br>
+                 <span>room 014</span>
+            </td>
+            <td>
+                    ly ly <br>
+                 <span>room 010</span>
+            </td>
+            <td>
+                    Meng Hong <br>
+                 <span>room 014</span>
+            </td>
+            <td>
+                    Ly Meng <br>
+                 <span>room 013</span>
+            </td>
         </tr>
+
         <tr>
-            <td>សុី</td>
-            <td>$30,000.00</td>
-            <td>5%</td>
-            <td>10%</td>
-            <td>20%</td>
-            <td>15%</td>
-            <td>15%</td>
+            <td>
+                Session 2 <br>
+                (8:50 - 10:20)
+            </td>
+            <td>
+                    Siv Heng <br>
+                <span>room 014</span>
+            </td>
+            <td>
+                    Hut Heng <br>
+                 <span>room 013</span>
+            </td>
+            <td>
+                    Siv Heng <br>
+                 <span>room 014</span>
+            </td>
+            <td>
+                    Seng lang <br>
+                 <span>room 014</span>
+            </td>
+            <td>
+                    ly ly <br>
+                 <span>room 010</span>
+            </td>
+            <td>
+                    Meng Hong <br>
+                 <span>room 014</span>
+            </td>
+            <td>
+                    Ly Meng <br>
+                 <span>room 013</span>
+            </td>
         </tr>
+
         <tr>
-            <td>Air Conditioner</td>
-            <td>$23,890.00</td>
-            <td>10%</td>
-            <td>20%</td>
-            <td>30%</td>
-            <td>15%</td>
-            <td>15%</td>
+            <td>
+                Session 3 <br>
+                (10:40 - 12:00)
+            </td>
+            <td>
+                    Siv Heng <br>
+                <span>room 014</span>
+            </td>
+            <td>
+                    Hut Heng <br>
+                 <span>room 013</span>
+            </td>
+            <td>
+                    Siv Heng <br>
+                 <span>room 014</span>
+            </td>
+            <td>
+                    Seng lang <br>
+                 <span>room 014</span>
+            </td>
+            <td>
+                    ly ly <br>
+                 <span>room 010</span>
+            </td>
+            <td>
+                    Meng Hong <br>
+                 <span>room 014</span>
+            </td>
+            <td>
+                    Ly Meng <br>
+                 <span>room 013</span>
+            </td>
         </tr>
+        
         
         <!-- Additional rows here -->
     </table>
