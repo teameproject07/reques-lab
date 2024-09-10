@@ -10,7 +10,7 @@ CREATE TABLE users (
     username VARCHAR(50),
     email VARCHAR(100) ,
     password VARCHAR(255),
-    date_time DATETIME,
+    DOB DATE,
     phone VARCHAR(255),
     position VARCHAR(20),
     address VARCHAR(100)
