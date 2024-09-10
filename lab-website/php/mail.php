@@ -1,55 +1,46 @@
 <?php
-  use PHPMailer\PHPMailer\PHPMailer;
-  use PHPMailer\PHPMailer\Exception;
-  require 'PHPMailer-master/src/Exception.php';
-  require 'PHPMailer-master/src/PHPMailer.php';
-  require 'PHPMailer-master/src/SMTP.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-function send_mail($recipient,$subject,$message)
+require 'PHPMailer-master/src/Exception.php';
+require 'PHPMailer-master/src/PHPMailer.php';
+require 'PHPMailer-master/src/SMTP.php';
+
+function send_mail($recipient, $subject, $message)
 {
+    $mail = new PHPMailer();
 
-  $mail = new PHPMailer();
-  $mail->IsSMTP();
+    // Set up SMTP
+    $mail->isSMTP();
+    $mail->SMTPDebug = 0;  // Disable debug output to avoid header issues
+    $mail->SMTPAuth = true;
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = 587;
+    $mail->Host = 'smtp.gmail.com';
 
-  $mail->SMTPDebug  = 2;  
-  $mail->SMTPAuth   = TRUE;
-  $mail->SMTPSecure = "tls";
-  $mail->Port       = 587;
-  $mail->Host       = "smtp.gmail.com";
-  //$mail->Host       = "smtp.mail.yahoo.com";
-  $mail->Username   = "langch4444@gmail.com";
-  $mail->Password   = "hoph fdff cnlw czxb";
+    // Email account credentials
+    $mail->Username = 'langch4444@gmail.com';
+    $mail->Password = 'hoph fdff cnlw czxb'; // Use environment variables or a safer method to store sensitive info
 
-  $mail->IsHTML(true);
-  $mail->AddAddress($recipient, "esteemed customer");
-  $mail->SetFrom("langch4444@gmail.com", "My Website");
-  //$mail->AddReplyTo("reply-to-email", "reply-to-name");
-  //$mail->AddCC("cc-recipient-email", "cc-recipient-name");
-  $mail->Subject = $subject;
-  $content = $message;
+    // Email settings
+    $mail->isHTML(true);
+    $mail->setFrom('langch4444@gmail.com', 'My Website');
+    $mail->addAddress($recipient, 'Esteemed Customer');
+    $mail->Subject = $subject;
+    $mail->Body = $message;
 
-  $mail->MsgHTML($content); 
-  if(!$mail->Send()) {
-    //echo "Error while sending Email.";
-    //echo "<pre>";
-    //var_dump($mail);
-    return false;
-  } else {
-    //echo "Email sent successfully";
-    return true;
-  }
-
+    try {
+        // Attempt to send the email
+        if ($mail->send()) {
+            return true;
+        } else {
+            error_log("Email sending failed: " . $mail->ErrorInfo); // Log error for debugging
+            return false;
+        }
+    } catch (Exception $e) {
+        error_log("Exception occurred while sending email: " . $e->getMessage()); // Log exception for debugging
+        return false;
+    }
 }
-
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
+

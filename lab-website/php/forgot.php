@@ -39,11 +39,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $result = is_code_correct($code);
             if ($result === "the code is correct") {
                 $_SESSION['forgot']['code'] = $code;
+                
                 header("Location: code.php?mode=enter_password");
                 exit;
             } else {
                 $error[] = $result;
                 header("Location: code.php?mode=enter_code");
+                
             }
             break;
 

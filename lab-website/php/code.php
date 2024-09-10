@@ -5,6 +5,16 @@ include 'forgot.php';
 $mode = isset($mode) ? $mode : 'enter_email';
 $error = isset($error) ? $error : [];
 
+// Function to display errors
+function display_errors($errors) {
+    if (!empty($errors)) {
+        echo '<span>';
+        foreach ($errors as $err) {
+            echo htmlspecialchars($err) . "<br>"; // Use htmlspecialchars to prevent XSS
+        }
+        echo '</span>';
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -96,76 +106,45 @@ $error = isset($error) ? $error : [];
 <body>
 
 <?php
-    switch ($mode) {
-        case 'enter_email':
-            ?>
-            <form method="post" action="forgot.php?mode=enter_email">
-                <h1>Forgot Password</h1>
-                <h3>Enter your email below</h3>
-                <span>
-                <?php
-                    if (!empty($error)) {
-                        foreach ($error as $err) {
-                            echo $err . "<br>";
-                        }
-                    }
-                ?>
-                </span>
-                <input class="textbox" type="email" name="email" placeholder="Email" required><br>
-                <input type="submit" value="Next">
-                <a href="login.php">Login</a>
-            </form>
-            <?php
-            break;
-
-        case 'enter_code':
-            ?>
-            <form method="post" action="forgot.php?mode=enter_code">
-                <h1>Forgot Password</h1>
-                <h3>Enter the code sent to your email</h3>
-                <span>
-                <?php
-                    if (!empty($error)) {
-                        foreach ($error as $err) {
-                            echo $err . "<br>";
-                        }
-                    }
-                ?>
-                </span>
-                <input class="textbox" type="text" name="code" placeholder="Enter your code" required><br>
-                <input type="submit" value="Next">
-                <a href="forgot.php"><input type="button" value="Start Over"></a>
-                <a href="login.php">Login</a>
-            </form>
-            <?php
-            break;
-
-        case 'enter_password':
-            ?>
-            <form method="post" action="forgot.php?mode=enter_password">
-                <h1>Forgot Password</h1>
-                <h3>Enter your new password</h3>
-                <span>
-                <?php
-                    if (!empty($error)) {
-                        foreach ($error as $err) {
-                            echo $err . "<br>";
-                        }
-                    }
-                ?>
-                </span>
-                <input class="textbox" type="password" name="password" placeholder="Password" required><br>
-                <input class="textbox" type="password" name="password2" placeholder="Retype Password" required><br>
-                <input type="submit" value="Next">
-                <a href="forgot.php"><input type="button" value="Start Over"></a>
-                <a href="login.php">Login</a>
-            </form>
-            <?php
-            break;
-
-        default:
-            echo "Invalid mode.";
-            break;
+    // Form rendering based on mode
+    if ($mode == 'enter_email') {
+        ?>
+        <form method="post" action="forgot.php?mode=enter_email">
+            <h1>Forgot Password</h1>
+            <h3>Enter your email below</h3>
+            <?php display_errors($error); ?>
+            <input class="textbox" type="email" name="email" placeholder="Email" required><br>
+            <input type="submit" value="Next">
+            <a href="login.php">Login</a>
+        </form>
+        <?php
+    } elseif ($mode == 'enter_code') {
+        ?>
+        <form method="post" action="forgot.php?mode=enter_code">
+            <h1>Forgot Password</h1>
+            <h3>Enter the code sent to your email</h3>
+            <?php display_errors($error); ?>
+            <input class="textbox" type="text" name="code" placeholder="Enter your code" required><br>
+            <input type="submit" value="Next">
+            <a href="forgot.php"><input type="button" value="Start Over"></a>
+            <a href="login.php">Login</a>
+        </form>
+        <?php
+    } elseif ($mode == 'enter_password') {
+        ?>
+        <form method="post" action="forgot.php?mode=enter_password">
+            <h1>Forgot Password</h1>
+            <h3>Enter your new password</h3>
+            <?php display_errors($error); ?>
+            <input class="textbox" type="password" name="password" placeholder="Password" required><br>
+            <input class="textbox" type="password" name="password2" placeholder="Retype Password" required><br>
+            <input type="submit" value="Next">
+            <a href="forgot.php"><input type="button" value="Start Over"></a>
+            <a href="login.php">Login</a>
+        </form>
+        <?php
+    } else {
+        echo "Invalid mode.";
     }
 ?>
 
