@@ -25,7 +25,6 @@ body {
   text-align: center;
   padding: 20px;
   margin-bottom: 20px;
- 
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
 }
@@ -76,8 +75,13 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
+  
 }
-
+a{
+  text-decoration: none;
+  
+  
+}
 .card:hover {
   transform: translateY(-10px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -85,8 +89,8 @@ body {
 
 .card-title {
   margin-bottom: 15px;
-  font-size: 1em;
-  color: #333;
+  text-decoration: none;
+  color: #675e5e;
 }
 
 .card img {
@@ -142,7 +146,7 @@ body {
   }
 
   .card-title {
-    font-size: 1em;
+    font-size: 1.2em;
   }
 
   .footer {

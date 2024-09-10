@@ -5,9 +5,15 @@
     box-sizing: border-box;
     font-family: 'Arial', sans-serif;
 }
-
+@font-face {
+    font-family: 'KhmerOS';
+    src: url('fonts/Khmer-Regular.ttf') format('truetype'); /* Adjust the path as necessary */
+    font-weight: normal;
+    font-style: normal;
+}
 /* Body Styling */
 body {
+    font-family: 'KhmerOS', Arial, sans-serif; 
     background-color: #5b5858;
     color: #333;
     display: flex;

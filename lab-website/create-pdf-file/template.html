@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Discounts</title>
+    <style>
+        body {
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f8f8; /* Soft background color */
+            
+        }
+
+        h1 {
+            font-size: 26px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 5px 0;
+            color: #444;
+        }
+
+        table {
+            width: 100%;
+            max-width: 1100px; /* Limit the max width for better layout */
+            margin: 20px auto; /* Center align the table */
+            border-collapse: collapse;
+            background-color: #ffffff; /* White background for the table */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        }
+
+        th, td {
+            border: 1px solid #007d33; /* Consistent border for table */
+            padding: 15px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: #007d33; /* Darker green for the header */
+            color: white;
+            font-weight: bold;
+            font-size: 20px; /* Larger font for headers */
+            border: 1px solid #9aa19d; /* Subtle bottom border for the header */
+        }
+
+        td {
+            color: #333;
+            font-size: 16px;
+            text-align: center; /* Align text to center */
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f3f7f3; 
+        }
+
+        tr:nth-child(odd) td {
+            background-color: #ffffff; 
+        }
+
+        tr:first-child th:first-child {
+            border-top-left-radius: 8px; /* Rounded corners for the top left */
+        }
+
+        tr:first-child th:last-child {
+            border-top-right-radius: 8px; /* Rounded corners for the top right */
+        }
+
+        tr:last-child td:first-child {
+            border-bottom-left-radius: 8px; /* Rounded corners for the bottom left */
+        }
+
+        tr:last-child td:last-child {
+            border-bottom-right-radius: 8px; /* Rounded corners for the bottom right */
+        }
+
+        .footer-text {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .footer-text span {
+            color: #c00; /* Red for important text */
+        }
+        td > span{
+            color: #cc3c3c;
+            font-weight: bold;
+            font-size: 15px;
+            padding-top: 1%;
+        }
+        .titles{
+            justify-content: space-between;
+            display: flex;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            
+        }
+        .tital1{
+            padding-left: 60%;
+        }
+        .tital2{
+            padding-right: 60%;
+        }
+    </style>
+</head>
+<body>
+    <div class="titles">
+        <div class="tital1">
+        <h3>Kingdom of Cambodia <br>
+            Nation Religion King
+        </h3> 
+    
+    </div>
+    <div class="tital2">
+        <h3>
+            National University of Battambong <br>
+            Facuty of Science and Technolgy
+        </h3>
+        <!-- <p>Name: {{ name }}</p>
+        <p>Quantity: {{ quantity }}</p> -->
+    </div>
+    </div>
+    <div class="date">
+        <span>Monday</span>
+            <span>October</span>
+                <span>11</span>
+                    <span>2024</span>
+                        <span>(Afternoon)</span>
+    </div>
+    <table>
+        <tr>
+            <th>Time</th>
+            <th colspan="">Monday</th>
+            <th colspan="">Tuesday</th>
+            <th colspan="">Wednesday</th>
+            <th colspan="">Thursday</th>
+            <th colspan="">Friday</th>
+            <th colspan="">Saturday</th>
+            <th colspan="">Sunday</th>
+        </tr>
+        <tr>
+            <td>
+                Session 1 <br>
+                (7:00 - 8:30)
+            </td>
+            <td>
+                    Siv Heng <br>
+                <span>room 014</span>
+            </td>
+            <td>
+                    Hut Heng <br>
+                 <span>room 013</span>
+            </td>
+            <td>
+                    Siv Heng <br>
+                 <span>room 014</span>
+            </td>
+            <td>
+                    Seng lang <br>
+                 <span>room 014</span>
+            </td>
+            <td>
+                    ly ly <br>
+                 <span>room 010</span>
+            </td>
+            <td>
+                    Meng Hong <br>
+                 <span>room 014</span>
+            </td>
+            <td>
+                    Ly Meng <br>
+                 <span>room 013</span>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Session 2 <br>
+                (8:50 - 10:20)
+            </td>
+            <td>
+                    Siv Heng <br>
+                <span>room 014</span>
+            </td>
+            <td>
+                    Hut Heng <br>
+                 <span>room 013</span>
+            </td>
+            <td>
+                    Siv Heng <br>
+                 <span>room 014</span>
+            </td>
+            <td>
+                    Seng lang <br>
+                 <span>room 014</span>
+            </td>
+            <td>
+                    ly ly <br>
+                 <span>room 010</span>
+            </td>
+            <td>
+                    Meng Hong <br>
+                 <span>room 014</span>
+            </td>
+            <td>
+                    Ly Meng <br>
+                 <span>room 013</span>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Session 3 <br>
+                (10:40 - 12:00)
+            </td>
+            <td>
+                    Siv Heng <br>
+                <span>room 014</span>
+            </td>
+            <td>
+                    Hut Heng <br>
+                 <span>room 013</span>
+            </td>
+            <td>
+                    Siv Heng <br>
+                 <span>room 014</span>
+            </td>
+            <td>
+                    Seng lang <br>
+                 <span>room 014</span>
+            </td>
+            <td>
+                    ly ly <br>
+                 <span>room 010</span>
+            </td>
+            <td>
+                    Meng Hong <br>
+                 <span>room 014</span>
+            </td>
+            <td>
+                    Ly Meng <br>
+                 <span>room 013</span>
+            </td>
+        </tr>
+        
+        
+        <!-- Additional rows here -->
+    </table>
+    <p class="footer-text">Data updated on <span>September 9, 2024</span></p>
+</body>
+</html>

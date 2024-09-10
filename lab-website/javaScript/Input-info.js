@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Submit form if all fields are valid
         if (valid) {
             form.submit();
-            window.location.href = "Profile.html";
+            window.location.href = "Profile.php";
         }
     });
 
