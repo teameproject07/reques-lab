@@ -31,7 +31,7 @@ CREATE TABLE `codes` (
   `ID` int(11) NOT NULL,
   `email` varchar(50) DEFAULT NULL,
   `code` varchar(50) DEFAULT NULL,
-  `expire` datetime DEFAULT NULL
+  `expire` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

@@ -7,7 +7,7 @@ require "mail.php";
 // if (!$con) {
 //     die("Connection failed: " . mysqli_connect_error());
 // }
-$con = mysqli_connect("localhost", "root", "", "request_lab");
+$con = mysqli_connect("localhost", "root", "", "request_labs");
 if (!$con) {
     die("Connection failed: " . mysqli_connect_error());
 }

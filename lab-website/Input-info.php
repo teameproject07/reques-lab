@@ -7,7 +7,7 @@ $username = $_SESSION['username'] ?? '';
 
 // Fetch user data
 $sql = "SELECT * FROM users WHERE username = ?";
-$stmt = $conn->prepare($sql);
+$stmt = $con->prepare($sql);
 $stmt->bind_param('s', $username);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -16,14 +16,14 @@ $stmt->close();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve and sanitize input data
-    $first_name = $conn->real_escape_string($_POST['firstname']);
-    $last_name = $conn->real_escape_string($_POST['lastname']);
-    $email = $conn->real_escape_string($_POST['email']);
-    $phone = $conn->real_escape_string($_POST['phone']);
-    $gender = $conn->real_escape_string($_POST['gender']);
-    $dob = $conn->real_escape_string($_POST['DOB']);
-    $position = $conn->real_escape_string($_POST['position']);
-    $address = $conn->real_escape_string($_POST['address']);
+    $first_name = $con->real_escape_string($_POST['firstname']);
+    $last_name = $con->real_escape_string($_POST['lastname']);
+    $email = $con->real_escape_string($_POST['email']);
+    $phone = $con->real_escape_string($_POST['phone']);
+    $gender = $con->real_escape_string($_POST['gender']);
+    $dob = $con->real_escape_string($_POST['DOB']);
+    $position = $con->real_escape_string($_POST['position']);
+    $address = $con->real_escape_string($_POST['address']);
 
     // Handle the file upload
     $photo = $_FILES['photo']['name'];
@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-$conn->close();
+$con->close();
 ?>
 
 <!DOCTYPE html>
