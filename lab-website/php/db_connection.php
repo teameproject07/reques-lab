@@ -13,7 +13,7 @@
 //     die("Connection failed: " . $con->connect_error);
 // }
 
-$conn = mysqli_connect("localhost", "root", "", "request_lab");
+$conn = mysqli_connect("localhost", "root", "", "request_labs");
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
