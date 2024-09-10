@@ -3,5 +3,5 @@ document.querySelector('.update-icon').addEventListener('click', function() {
 });
 
 document.querySelector('.edit-button').addEventListener('click', function() {
-    window.location.href = "Input-info.html";
+    window.location.href = "Input-info.php";
 });
