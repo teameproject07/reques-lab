@@ -19,16 +19,19 @@
     <!-- Form Section -->
     <div class="form-container">
         <form id="admin-form" action="#" method="post" enctype="multipart/form-data">
+            <!-- Full Name Field -->
             <div class="form-group">
-                <label for="first-name">First Name:</label>
-                <input type="text" id="first-name" name="first-name" required>
+                <label for="fullname">Full Name:</label>
+                <input type="text" id="fullname" name="fullname" required>
             </div>
 
+            <!-- Username Field -->
             <div class="form-group">
-                <label for="last-name">Last Name:</label>
-                <input type="text" id="last-name" name="last-name" required>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
             </div>
 
+            <!-- Gender Field -->
             <div class="form-group">
                 <label for="gender">Gender:</label>
                 <select id="gender" name="gender" required>
@@ -39,18 +42,52 @@
                 </select>
             </div>
 
+            <!-- Subject Field -->
             <div class="form-group">
                 <label for="subject">Subject:</label>
                 <input type="text" id="subject" name="subject" required>
             </div>
 
+            <!-- Email Field -->
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <!-- Password Field -->
+            <div class="form-group">
+                <label for="password1">Password:</label>
+                <input type="password" id="password1" name="password1" required>
+                <i class="fas fa-eye toggle-password" data-toggle="#password1"></i>
+            </div>
+
+            <!-- Confirm Password Field -->
+            <div class="form-group">
+                <label for="password2">Confirm Password:</label>
+                <input type="password" id="password2" name="password2" required>
+                <i class="fas fa-eye toggle-password" data-toggle="#password2"></i>
+            </div>
+
+            <!-- Photo Upload Field -->
             <div class="form-group">
                 <label for="photo">Photo:</label>
                 <input type="file" id="photo" name="photo" accept="image/*" required>
                 <div id="photo-preview"></div> <!-- Photo Preview Container -->
             </div>
+            <!-- Photo Upload Field -->
+<div class="form-group">
+    <label for="photo" class="custom-file-upload">
+        <span class="upload-text">Choose Photo</span>
+        <input type="file" id="photo" name="photo" accept="image/*" required>
+    </label>
+    <span id="file-chosen" class="file-chosen">No file chosen</span>
+    <div id="photo-preview"></div> <!-- Photo Preview Container -->
+</div>
+
+
+            <!-- Submit Button -->
             <div class="form-group">
-                <button type="button" class="Next">Next</button>
+                <button type="button" class="Submit">Submit</button>
             </div>
         </form>
     </div>
@@ -63,19 +100,48 @@
     </footer>
 
 <script>
-    // Validate form before submitting
-    document.querySelector('.Next').addEventListener('click', function() {
+    // Form Submission Validation
+    document.querySelector('.Submit').addEventListener('click', function() {
         const form = document.getElementById('admin-form');
-        if (form.checkValidity()) {
-            // If the form is valid, navigate to the next page
-            window.location.href = "add-admin-pw-em.html";
-        } else {
-            // If the form is not valid, show a validation message
-            alert('Please fill out all required fields correctly.');
+        const password1 = document.getElementById('password1').value;
+        const password2 = document.getElementById('password2').value;
+        const email = document.getElementById('email').value;
+
+        // Validate if passwords match
+        if (password1 !== password2) {
+            alert('Passwords do not match. Please try again.');
+            return; // Prevent form submission
         }
+
+        // Validate email format
+        if (!validateEmail(email)) {
+            alert('Please enter a valid email address.');
+            return; // Prevent form submission
+        }
+
+        // If all validations pass, proceed with submission
+        alert('Form submitted successfully!');
+        // You can handle form submission here
     });
 
-    // Preview the uploaded photo
+    // Email format validation
+    function validateEmail(email) {
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        return emailPattern.test(email);
+    }
+
+    // Password visibility toggle
+    document.querySelectorAll('.toggle-password').forEach(item => {
+        item.addEventListener('click', function() {
+            const input = document.querySelector(this.getAttribute('data-toggle'));
+            const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+            input.setAttribute('type', type);
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+    });
+
+    // Photo preview functionality
     document.getElementById('photo').addEventListener('change', function(event) {
         const file = event.target.files[0];
         if (file) {
