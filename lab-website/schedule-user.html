@@ -1,45 +1,117 @@
 <!DOCTYPE html>
-<html lang="km">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>តារាងកាលវិភាគ</title>
-    <link rel="stylesheet" href="style/schedule.css">
-</head>
+    <title>Lab Requests</title>
+    <link rel="stylesheet" href="style/schedule-user.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    </head>
 <body>
-    <!-- Header Section -->
-    <header class="site-header">
-        <div class="container">
-            <h1>តារាងកាលវិភាគ</h1>
-            <nav>
-                <ul>
-                    <li><a href="schedule-user.html">Home</a></li>
-                    <li><a href="Contact.html">Contact</a></li>
-                    <li><a href="About.html">About</a></li>
-                    <li><a href="Profile.html">Profile</a></li>
-                    <li><a href="index.html">Logout</a></li>
-                </ul>
-            </nav>
-        </div>
+    <header>
+        <h1>Wellcom to lab requests</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Contact</a>
+            <a href="#">About</a>
+            <a href="#">Profile</a>
+            <a href="#">Logout</a>
+        </nav>
     </header>
-    
-    <!-- Main Content Section -->
-    <div class="container">
-        <div class="button-group">
-            <button class="btn it">សាល​ Computer បច្ចេកវិទ្យាព័ត៍មាន</button>
-            <button class="btn civil">សាល​ Computer សំណង់សុីវិល</button>
-            <button class="btn normail">សាល​ Computer ទូទៅ</button>
+
+    <main>
+        <div class="card-container">
+            <a href="table-lab.html" class="table-request">
+                <div class="card table-reuest">
+                    <img src="https://cdn-icons-png.flaticon.com/512/4675/4675642.png" alt="Lab Image">
+                    <h2>Table Request</h2>
+                </div>
+            </a>
+            
+                <div class="card request-lab">
+                    <img src="https://as1.ftcdn.net/v2/jpg/05/26/25/14/1000_F_526251448_0orBL2xLVKIqE4stPwHtumGZpCfjxTgc.jpg" alt="Lab Image">
+                    <h2>Lab 010</h2>
+                    <p>The lab is closed.</p>
+                </div>
+            
+
+            <!-- Additional cards -->
+            
+                <div class="card request-lab">
+                    <img src="https://as1.ftcdn.net/v2/jpg/05/26/25/14/1000_F_526251448_0orBL2xLVKIqE4stPwHtumGZpCfjxTgc.jpg" alt="Lab Image">
+                    <h2>Lab 013</h2>
+                    <p>The lab is closed.</p>
+                </div>
+            
+
+            
+                <div class="card request-lab">
+                    <img src="https://as1.ftcdn.net/v2/jpg/05/26/25/14/1000_F_526251448_0orBL2xLVKIqE4stPwHtumGZpCfjxTgc.jpg" alt="Lab Image">
+                    <h2>Lab 014</h2>
+                    <p>The lab is closed.</p>
+                </div>
+            
+
+            
+                <div class="card request-lab">
+                    <img src="https://as1.ftcdn.net/v2/jpg/05/26/25/14/1000_F_526251448_0orBL2xLVKIqE4stPwHtumGZpCfjxTgc.jpg" alt="Lab Image">
+                    <h2>Lab civil</h2>
+                    <p>The lab is closed.</p>
+                </div>
+            
+
+            
+                <div class="card request-lab">
+                    <img src="https://as1.ftcdn.net/v2/jpg/05/26/25/14/1000_F_526251448_0orBL2xLVKIqE4stPwHtumGZpCfjxTgc.jpg" alt="Lab Image">
+                    <h2>Lab 012</h2>
+                    <p>The lab is closed.</p>
+                </div>
+            
+            <!-- Repeat for more labs -->
+
         </div>
-        <button class="request-btn">ស្នើសុំ</button>
+    </main>
+
+    <footer>
+        <p>Copyrights</p>
+    </footer>
+
+    <!-- Custom Alert Modal -->
+    <div id="customAlert" class="modal">
+        <div class="modal-content">
+            <h2>Request Lab Access</h2>
+            <span class="close-btn" aria-label="Close" onclick="closeCustomAlert()">&times;</span>
+            <p>Please enter your information to request access:</p>
+            <input type="date" id="date" >
+            <input type="text" id="subject" placeholder="Enter your subject" >
+            <input type="text" id="generation" placeholder="Enter your generation" >
+            <input type="text" id="app" placeholder="Enter your app">
+            <input type="number" id="numberStudent" placeholder="Enter your number of students" >
+            <input type="text" id="other" placeholder="Other..." >
+    
+            <!-- Session Selection Buttons -->
+            <p>Select Session (Max 3)</p>
+            <div class="session-buttons">
+                <button class="session-btn" onclick="selectSession(this)">1</button>
+                <button class="session-btn" onclick="selectSession(this)">2</button>
+                <button class="session-btn" onclick="selectSession(this)">3</button>
+                <button class="session-btn" onclick="selectSession(this)">4</button>
+                <button class="session-btn" onclick="selectSession(this)">5</button>
+                <button class="session-btn" onclick="selectSession(this)">6</button>
+            </div>
+    
+            <button type="button" onclick="submitRequest()" class="submit">Submit</button>
+        </div>
     </div>
     
-    <!-- Footer Section -->
-    <footer class="site-footer">
-        <div class="container">
-            <p>&copy; 2024 សាលារៀន. រក្សាសិទ្ធគ្រប់យ៉ាង។</p>
-        </div>
-    </footer>
-    
-    <script src="javaScript/schedule-user.js"></script>
+
+        
+
+    </div>
+
+    <script src="javaScript/schedule-user.js" defer>
+        
+    </script> <!-- Include external JavaScript file -->
 </body>
 </html>
