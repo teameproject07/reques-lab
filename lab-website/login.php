@@ -1,6 +1,6 @@
 <?php
 // login.php
-include 'php/db_connection.php'; // Adjust the path as needed
+include 'db_connection.php'; // Adjust the path as needed
 
 // Start session
 session_start();
@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Prepare SQL statement to prevent SQL injection
     $sql = "SELECT * FROM users WHERE username = ?";
-    $stmt = $conn->prepare($sql);
+    $stmt = $con->prepare($sql);
     $stmt->bind_param('s', $username);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -32,18 +32,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Set session variables
             $_SESSION['user_id'] = $user['ID'];
             $_SESSION['username'] = $user['username'];
+            $_SESSION['user_type'] = $user['type']; // Store user type in session
             
-            // Redirect to profile or homepage
-            header("Location: profile.php");
+            // Check user type and redirect accordingly
+            if ($user['type'] == 'admin') { // Fixed here to match the column name
+                header("Location: schedule-admin.html");
+            } else if ($user['type'] == 'user') { // Fixed here to match the column name
+                header("Location: schedule-user.html");
+            }
             exit;
         } else {
             echo "Invalid username or password.";
         }
     } else {
-        echo "User not found.";
+        echo "Invalid username or password.";
     }
 
     $stmt->close();
-    $conn->close();
+    $con->close();
 }
 ?>

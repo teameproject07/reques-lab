@@ -1,5 +1,5 @@
 <?php
-include 'php/db_connection.php';
+include 'db_connection.php';
 
 // Check database connection
 if ($con->connect_error) {
@@ -19,7 +19,7 @@ $user = [];
 
 // Use prepared statements to prevent SQL injection
 $sql = "SELECT * FROM users WHERE username = ?";
-$stmt = $conn->prepare($sql);
+$stmt = $con->prepare($sql);
 if (!$stmt) {
     die("Failed to prepare statement: " . $con->error);
 }
@@ -58,7 +58,9 @@ $con->close();
                     <li><a href="Contact.html">Contact</a></li>
                     <li><a href="About.html">About</a></li>
                     <li><a href="Profile.php">Profile</a></li>
-                    <li><a href="index.html">Logout</a></li>
+                    <li><form action="logout.php" method="post">
+                        <button type="submit">Logout</button>
+                    </form></li>
                 </ul>
             </nav>
         </div>
