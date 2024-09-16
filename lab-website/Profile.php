@@ -2,8 +2,8 @@
 include 'php/db_connection.php';
 
 // Check database connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($con->connect_error) {
+    die("Connection failed: " . $con->connect_error);
 }
 
 // Start session and fetch username
@@ -21,7 +21,7 @@ $user = [];
 $sql = "SELECT * FROM users WHERE username = ?";
 $stmt = $conn->prepare($sql);
 if (!$stmt) {
-    die("Failed to prepare statement: " . $conn->error);
+    die("Failed to prepare statement: " . $con->error);
 }
 $stmt->bind_param('s', $username);
 $stmt->execute();
@@ -36,7 +36,7 @@ if ($result->num_rows > 0) {
 }
 
 $stmt->close();
-$conn->close();
+$con->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,7 +57,7 @@ $conn->close();
                     <li><a href="schedule-user.html">Home</a></li>
                     <li><a href="Contact.html">Contact</a></li>
                     <li><a href="About.html">About</a></li>
-                    <li><a href="Profile.html">Profile</a></li>
+                    <li><a href="Profile.php">Profile</a></li>
                     <li><a href="index.html">Logout</a></li>
                 </ul>
             </nav>
