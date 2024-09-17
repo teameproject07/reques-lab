@@ -115,7 +115,7 @@ function display_errors($errors) {
             <?php display_errors($error); ?>
             <input class="textbox" type="email" name="email" placeholder="Email" required><br>
             <input type="submit" value="Next">
-            <a href="login.php">Login</a>
+            <a href="index.html">Login</a>
         </form>
         <?php
     } elseif ($mode == 'enter_code') {
@@ -127,7 +127,7 @@ function display_errors($errors) {
             <input class="textbox" type="text" name="code" placeholder="Enter your code" required><br>
             <input type="submit" value="Next">
             <a href="forgot.php"><input type="button" value="Start Over"></a>
-            <a href="login.php">Login</a>
+            <a href="index.html">Login</a>
         </form>
         <?php
     } elseif ($mode == 'enter_password') {
@@ -140,7 +140,7 @@ function display_errors($errors) {
             <input class="textbox" type="password" name="password2" placeholder="Retype Password" required><br>
             <input type="submit" value="Next">
             <a href="forgot.php"><input type="button" value="Start Over"></a>
-            <a href="login.php">Login</a>
+            <a href="index.html">Login</a>
         </form>
         <?php
     } else {

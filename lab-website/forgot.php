@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             } else {
                 save_password($password);
                 unset($_SESSION['forgot']);
-                header("Location: login.php");
+                header("Location: index.html");
                 exit;
             }
             break;

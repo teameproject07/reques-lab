@@ -99,8 +99,7 @@ CREATE TABLE `session` (
 
 CREATE TABLE `users` (
   `ID` int(11) NOT NULL,
-  `first_name` varchar(100) DEFAULT NULL,
-  `last_name` varchar(100) DEFAULT NULL,
+  `full_name` varchar(200) DEFAULT NULL,
   `gender` varchar(10) DEFAULT NULL,
   `subject` varchar(100) DEFAULT NULL,
   `photo` varchar(255) DEFAULT NULL,

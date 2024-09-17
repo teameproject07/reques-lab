@@ -1,5 +1,5 @@
 <?php
-include 'php/db_connection.php';
+include 'db_connection.php';
 
 // Start session and fetch the username
 session_start();
