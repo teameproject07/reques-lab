@@ -4,48 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us</title>
-    <link rel="stylesheet" href="style/Contact.css"> <!-- Assuming your CSS file is named styles.css -->
+    <link rel="stylesheet" href="style/Contact-page.css"> <!-- Assuming your CSS file is named styles.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-   <!-- Header Section -->
-   <header class="site-header">
-        
-    <div class="container">
-        <h1>Cotact Us</h1>
-    </div>
-
-    <!-- Navigation Links -->
-    <nav class="nav-links">
-        <ul>
-            <li><a href="schedule-user.html">Home</a></li>
-            <li><a href="Contact.html">Contact</a></li>
-            <li><a href="About.html">About</a></li>
-            <li><a href="Profile.php">Profile</a></li>
-            <li><a href="index.html">Logout</a></li>
-        </ul>
-    </nav>
-</header>
+        <!-- Header Section -->
+        <header class="site-header">
+            <div class="container">
+                <h1>Contact Us</h1>
+                <nav>
+                    <ul>
+                        <li><a href="schedule-user.html">Home</a></li>
+                        <li><a href="Contact.html">Contact</a></li>
+                        <li><a href="About.html">About</a></li>
+                        <li><a href="Profile.php">Profile</a></li>
+                        <li>
+                            <form action="logout.php" method="post">
+                                <button type="submit">Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
 
     <section class="contact-section">
         <h3>Get in Touch</h3>
         <p>If you have any questions or inquiries, feel free to contact us using the form below.</p>
 
-        <form class="contact-form" action="#" method="post">
+        <form class="contact-form" action="Contact-mail/send-email.php" method="post">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
-
+        
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
-
+        
             <label for="subject">Subject:</label>
             <input type="text" id="subject" name="subject" required>
-
+        
             <label for="message">Message:</label>
             <textarea id="message" name="message" rows="5" required></textarea>
-
+        
             <button type="submit">Send Message</button>
         </form>
+        
     </section>
     
 
@@ -61,9 +63,12 @@
     </div>
 </div>
 
-    <footer class="site-footer">
-        <p>&copy; 2024 Your Company Name. All rights reserved.</p>
-    </footer>
+   <!-- Footer Section -->
+   <footer class="site-footer">
+    <div class="container">
+        <p>&copy; 2024 Dong Darong. All rights reserved.</p>
+    </div>
+</footer>
     <script>
         
 function toggleInfo() {
