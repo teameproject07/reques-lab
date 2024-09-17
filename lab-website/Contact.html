@@ -6,6 +6,7 @@
     <title>Contact Us</title>
     <link rel="stylesheet" href="style/Contact-page.css"> <!-- Assuming your CSS file is named styles.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
         <!-- Header Section -->
@@ -63,15 +64,22 @@
     </div>
 </div>
 
-   <!-- Footer Section -->
-   <footer class="site-footer">
-    <div class="container">
-        <p>&copy; 2024 Dong Darong. All rights reserved.</p>
-    </div>
-</footer>
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 Dong Darong. All rights reserved.</p>
+            <div class="social-icons">
+                <a href="https://web.facebook.com/rong453" target="_blank" class="facebook-icon">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://t.me/Dong_Darong13" target="_blank" class="telegram-icon">
+                    <i class="fab fa-telegram-plane"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
     <script>
-        
-function toggleInfo() {
+        function toggleInfo() {
     var overlay = document.getElementById('infoOverlay');
     if (overlay.style.display === 'flex') {
         overlay.style.display = 'none';
@@ -80,8 +88,37 @@ function toggleInfo() {
     }
 }
 
+    // Function to get query parameters from URL
+    function getQueryParams() {
+        let params = {};
+        let search = window.location.search.substring(1);
+        let pairs = search.split("&");
+        for (let i = 0; i < pairs.length; i++) {
+            let pair = pairs[i].split("=");
+            params[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || "");
+        }
+        return params;
+    }
 
+    // Get query parameters
+    const params = getQueryParams();
+
+    // If the success parameter is present, show appropriate message
+    if (params.success === 'true') {
+        Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Message sent successfully!",
+            showConfirmButton: false,
+            timer: 1500
+        });
+        
+    } else if (params.success === 'false') {
+        alert("Failed to send message. Please try again.");
+    }
 </script>
+
+
 
     
 </body>

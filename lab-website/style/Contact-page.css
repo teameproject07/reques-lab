@@ -75,6 +75,7 @@ button:hover {
     padding: 40px 0;
     background-color: #fff;
     text-align: center;
+    
 }
 
 .contact-section h3 {
@@ -85,11 +86,12 @@ button:hover {
 .contact-section p {
     margin-bottom: 30px;
     color: #666;
+    
 }
 
 .contact-form {
     max-width: 600px;
-    margin: 0 auto;
+    margin: 60px auto;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
@@ -130,7 +132,7 @@ button:hover {
 /* Info Icon and Overlay */
 .info-container {
     position: fixed;
-    bottom: 60px;
+    bottom: 140px;
     right: 20px;
     
     
@@ -190,21 +192,52 @@ button:hover {
     cursor: pointer;
 }
 
-/* Footer Styles */
+/* Style for the footer section */
 .site-footer {
+    background-color: #222;
+    padding: 10px;
     text-align: center;
-    padding: 15px;
-    background-color: #4CAF50;
     color: white;
-    font-size: 1rem;
-    position: fixed;
-    width: 100%;
+    margin-top: 50px;
+    position:fixed;
     bottom: 0;
+    width: 100%;
+    margin-top: 1rem;
 }
 
-.site-footer p {
-    margin: 0;
+/* Social icons container */
+.social-icons {
+    margin-top: 10px;
 }
+
+/* Style for individual social media icons */
+.social-icons a {
+    color: white;
+    font-size: 24px;
+    margin: 0 10px;
+    display: inline-block;
+    transition: color 0.3s ease;
+}
+
+/* Facebook icon hover color */
+.social-icons a.facebook-icon:hover {
+    color: #3b5998; /* Facebook blue */
+}
+
+/* Telegram icon hover color */
+.social-icons a.telegram-icon:hover {
+    color: #0088cc; /* Telegram blue */
+}
+
+/* Ensuring icons scale nicely on hover */
+.social-icons a i {
+    transition: transform 0.3s ease;
+}
+
+.social-icons a:hover i {
+    transform: scale(1.2);
+}
+
 
 /* Responsive Styles */
 @media (max-width: 768px) {
