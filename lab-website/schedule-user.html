@@ -9,17 +9,25 @@
 
     </head>
 <body>
-    <header>
-        <h1>Wellcom to lab requests</h1>
-        <nav>
-            <a href="schedule-user.html">Home</a>
-            <a href="Contact.html">Contact</a>
-            <a href="About.html">About</a>
-            <a href="Profile.php">Profile</a>
-            <a href="index.html">Logout</a>
-        </nav>
+     <!-- Header Section -->
+     <header class="site-header">
+        <div class="container">
+            <h1>Wellcom to request lab</h1>
+            <nav>
+                <ul>
+                    <li><a href="schedule-user.html">Home</a></li>
+                    <li><a href="Contact.html">Contact</a></li>
+                    <li><a href="About.html">About</a></li>
+                    <li><a href="Profile.php">Profile</a></li>
+                    <li>
+                        <form action="logout.php" method="post">
+                            <button type="submit">Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </header>
-
     <main>
         <div class="card-container">
             <a href="table-request-morning.html" class="table-request">
@@ -73,8 +81,11 @@
         </div>
     </main>
 
-    <footer>
-        <p>Copyrights</p>
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 Dong Darong. All rights reserved.</p>
+        </div>
     </footer>
 
     <!-- Custom Alert Modal -->

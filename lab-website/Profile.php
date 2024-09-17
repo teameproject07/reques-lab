@@ -1,10 +1,5 @@
 <?php
-include 'db_connection.php';
-
-// Check database connection
-if ($con->connect_error) {
-    die("Connection failed: " . $con->connect_error);
-}
+include 'db_connection.php';  // Ensure your database connection is correct
 
 // Start session and fetch username
 session_start();
@@ -14,15 +9,14 @@ if (empty($username)) {
     exit;
 }
 
-// Initialize $user to avoid undefined variable warnings
-$user = [];
-
 // Use prepared statements to prevent SQL injection
 $sql = "SELECT * FROM users WHERE username = ?";
 $stmt = $con->prepare($sql);
-if (!$stmt) {
+
+if ($stmt === false) {
     die("Failed to prepare statement: " . $con->error);
 }
+
 $stmt->bind_param('s', $username);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -38,6 +32,7 @@ if ($result->num_rows > 0) {
 $stmt->close();
 $con->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,7 +40,7 @@ $con->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Page</title>
     <link rel="stylesheet" href="style/Profile.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 </head>
 <body>
     <!-- Header Section -->
@@ -58,23 +53,28 @@ $con->close();
                     <li><a href="Contact.html">Contact</a></li>
                     <li><a href="About.html">About</a></li>
                     <li><a href="Profile.php">Profile</a></li>
-                    <li><form action="logout.php" method="post">
-                        <button type="submit">Logout</button>
-                    </form></li>
+                    <li>
+                        <form action="logout.php" method="post">
+                            <button type="submit">Logout</button>
+                        </form>
+                    </li>
                 </ul>
             </nav>
         </div>
     </header>
-    
+
     <!-- Profile Card Section -->
     <div class="profile-card">
         <div class="profile-header">
-            <img src="<?php echo 'uploads/' . htmlspecialchars($user['photo']); ?>" alt="Profile Image" class="profile-img">
-            <div class="update-icon" title="Update Profile Picture">
-                <i class="fa-solid fa-cloud-arrow-up"></i>
-            </div>
+            <img src="<?php 
+                if (file_exists('uploads/' . $user['photo'])) {
+                    echo 'uploads/' . htmlspecialchars($user['photo']);
+                } else {
+                    echo 'uploads/default.png'; // Fallback image if user photo doesn't exist
+                }
+            ?>" alt="Profile Image" class="profile-img">
             <div class="profile-name">
-                <h2><?php echo htmlspecialchars($user['first_name']) . ' ' . htmlspecialchars($user['last_name']); ?></h2>
+                <h2><?php echo htmlspecialchars($user['full_name']); ?></h2>
                 <p><?php echo htmlspecialchars($user['username']); ?></p>
             </div>
             <button class="edit-button">Edit</button>
@@ -116,7 +116,7 @@ $con->close();
 
     <script>
         document.querySelector('.edit-button').addEventListener('click', function() {
-            window.location.href = "Input-info.php";
+            window.location.href = "update-profile-page.php"; // Redirect to input form for editing
         });
     </script>
 </body>
