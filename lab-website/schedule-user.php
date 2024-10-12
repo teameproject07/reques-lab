@@ -34,7 +34,7 @@ require "db_connection.php"; // Include your database connection
 
     <!-- Main Content Section -->
     <main>
-        <div class="card-container">
+        <div class="card-container" onclick="openCustomAlert()">
             <?php
             // Fetch data from the database
             $sql = "SELECT * FROM lab"; // Replace 'lab' with your actual table name
@@ -57,7 +57,7 @@ require "db_connection.php"; // Include your database connection
                     } else {
                         echo '<p>No lab status information available.</p>';
                     }
-                    echo '<button type="button" onclick="openCustomAlert()">Request Access</button>'; // Button to open the modal
+                    echo '<button type="button" >Request Access</button>'; // Button to open the modal
                     echo '</div>';
                 }
             } else {
@@ -118,18 +118,7 @@ require "db_connection.php"; // Include your database connection
             const other = document.getElementById('other').value;
             
             // Collect selected session buttons
-            const selectedSessions = Array.from(document.querySelectorAll('.session-btn.selected'))
-                                          .map(btn => btn.dataset.sessionId);
-
-            // Check if the maximum of 3 sessions is selected
-            if (selectedSessions.length > 3) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'You can select a maximum of 3 sessions!',
-                });
-                return;
-            }
+            
 
             // Prepare data for AJAX request
             const requestData = {
@@ -167,7 +156,19 @@ require "db_connection.php"; // Include your database connection
 
         function selectSession(btn) {
             btn.classList.toggle('selected');
-            alert(`Session ${btn.dataset.sessionId} selected!`);
+            // alert(`Session ${btn.dataset.sessionId} selected!`);
+            const selectedSessions = Array.from(document.querySelectorAll('.session-btn.selected'))
+                                          .map(btn => btn.dataset.sessionId);
+
+            // Check if the maximum of 3 sessions is selected
+            if (selectedSessions.length > 3) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'You can select a maximum of 3 sessions!',
+                });
+                return;
+            }
         }
 
         function closeCustomAlert() {
