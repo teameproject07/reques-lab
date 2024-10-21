@@ -402,25 +402,28 @@ button:hover {
         </nav>
 </header>
 
-<div class="container">
-    <div class="card-container">
-        <div class="card request-lab">
-            <img src="image1.jpg" alt="Lab Image">
-            <h2>Lab 1</h2>
-            <p>Request access for Lab 1</p>
+<main>
+        <div class="card-container">
+            <?php
+            // Fetch lab data from the database
+            $sql = "SELECT * FROM lab";
+            $result = $con->query($sql);
+
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo '<div class="card request-lab">';
+                    echo '<img src="https://cdn-icons-png.flaticon.com/512/4675/4675642.png" alt="Lab Image">';
+                    echo '<h2>' . htmlspecialchars($row["name_lab"]) . '</h2>';
+                    echo '<p>' . ($row["ID"] == "closed" ? 'The lab is closed.' : 'The lab is open.') . '</p>';
+                    echo '</div>';
+                }
+            } else {
+                echo '<p>No lab records found.</p>';
+            }
+            $con->close();
+            ?>
         </div>
-        <div class="card request-lab">
-            <img src="image2.jpg" alt="Lab Image">
-            <h2>Lab 2</h2>
-            <p>Request access for Lab 2</p>
-        </div>
-        <div class="card request-lab">
-            <img src="image3.jpg" alt="Lab Image">
-            <h2>Lab 3</h2>
-            <p>Request access for Lab 3</p>
-        </div>
-    </div>
-</div>
+    </main>
 
 <!-- Custom Alert Modal -->
 <div id="customAlert" class="modal">
