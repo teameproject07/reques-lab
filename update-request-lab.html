@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request Lab Access</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100%;
+    }
+
+    .modal {
+      background-color: rgba(0, 0, 0, 0.5);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      margin: 10px;
+    }
+
+    .alert {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      border: 2px solid #e6e6e6;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      z-index: 2;
+    }
+
+    .alert button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .alert button:hover {
+      background-color: #0056b3;
+    }
+
+    .close {
+      float: right;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    form input, .submit {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .session-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .session {
+      padding: 10px;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .session.active {
+      background-color: #62caf4;
+    }
+
+    .afternoon {
+      grid-column: span 3;
+      text-align: left;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .submit {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .submit:hover {
+      background-color: #0056b3;
+    }
+
+    @media (max-width: 400px) {
+      .modal-content {
+        max-width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Request Lab Access</h2>
+      <p>Please enter your information to request access:</p>
+      <form id="labForm">
+        <input type="date" required>
+        <input type="text" placeholder="Enter your subject" required>
+        <input type="text" placeholder="Enter your generation" required>
+        <input type="text" placeholder="Enter your app" required>
+        <input type="number" placeholder="Enter your number of students" required>
+        <input type="text" placeholder="Other...">
+        <p>Select Session (Max 3)</p>
+        <div class="session-grid">
+          <button type="button" class="session">1</button>
+          <button type="button" class="session">2</button>
+          <button type="button" class="session">3</button>
+          <div class="afternoon">Afternoon</div>
+          <button type="button" class="session">4</button>
+          <button type="button" class="session">5</button>
+          <button type="button" class="session">6</button>
+        </div>
+        <button type="submit" class="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="alert" id="alert">
+    
+    <p>You can only select up to 3 sessions.</p>
+    <button onclick="closeAlert()">OK</button>
+  </div>
+
+  <script>
+    const modal = document.querySelector('.modal');
+    const closeButton = document.querySelector('.close');
+    const sessionButtons = document.querySelectorAll('.session');
+    const alertBox = document.getElementById('alert');
+    let selectedSessions = [];
+
+    // Close the modal when clicking the close button
+    closeButton.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    // Toggle session selection and enforce max of 3 sessions
+    sessionButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        if (button.classList.contains('active')) {
+          button.classList.remove('active');
+          selectedSessions = selectedSessions.filter(s => s !== button);
+        } else if (selectedSessions.length < 3) {
+          button.classList.add('active');
+          selectedSessions.push(button);
+        } else {
+          showAlert();
+        }
+      });
+    });
+
+    // Show the custom alert
+    function showAlert() {
+      alertBox.style.display = 'block';
+    }
+
+    // Close the custom alert
+    function closeAlert() {
+      alertBox.style.display = 'none';
+    }
+
+    // Handle form submission
+    document.getElementById('labForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Form submitted successfully!');
+    });
+  </script>
+</body>
+</html>
