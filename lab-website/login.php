@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($user['type'] == 'admin') { // Fixed here to match the column name
                 header("Location: schedule-admin.html");
             } else if ($user['type'] == 'user') { // Fixed here to match the column name
-                header("Location: schedule-user.html");
+                header("Location: schedule-user.php");
             }
             exit;
         } else {

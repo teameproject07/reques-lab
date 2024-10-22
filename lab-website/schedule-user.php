@@ -454,7 +454,7 @@ button:hover {
             </div>
             
             <input type="hidden" id="selectedSessions" name="selectedSessions">
-            <button type="submit" class="submit">Submit</button>
+            <button type="submit" onclick="submitRequest()" class="submit">Submit</button>
         </form>
     </div>
 </div>
@@ -494,6 +494,7 @@ function resetForm() {
         button.classList.remove('selected');
     });
     document.getElementById('selectedSessions').value = ''; // Reset hidden input
+
 }
 
 // Function to select/deselect a session
