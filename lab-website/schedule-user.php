@@ -403,27 +403,32 @@ button:hover {
 </header>
 
 <main>
-        <div class="card-container">
-            <?php
-            // Fetch lab data from the database
-            $sql = "SELECT * FROM lab";
-            $result = $con->query($sql);
+    <div class="card-container">
+        <?php
+        // Fetch lab data from the database
+        $sql = "SELECT * FROM lab";
+        $result = $con->query($sql);
 
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo '<div class="card request-lab">';
-                    echo '<img src="https://cdn-icons-png.flaticon.com/512/4675/4675642.png" alt="Lab Image">';
-                    echo '<h2>' . htmlspecialchars($row["name_lab"]) . '</h2>';
-                    echo '<p>' . ($row["ID"] == "closed" ? 'The lab is closed.' : 'The lab is open.') . '</p>';
-                    echo '</div>';
-                }
-            } else {
-                echo '<p>No lab records found.</p>';
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo '<div class="card request-lab">';
+                
+                // Display the image from the 'image-lab' field
+                echo '<img src="' . htmlspecialchars($row["image-lab"]) . '" alt="Lab Image">';
+                
+                // Add class to the h2 element based on the 'ID' field
+                echo '<h2 value="' . htmlspecialchars($row["ID"]) . '">' . htmlspecialchars($row["name_lab"]) . '</h2>';
+                
+                echo '</div>';
             }
-            $con->close();
-            ?>
-        </div>
-    </main>
+        } else {
+            echo '<p>No lab records found.</p>';
+        }
+        $con->close();
+        ?>
+    </div>
+</main>
+
 
 <!-- Custom Alert Modal -->
 <div id="customAlert" class="modal">
@@ -454,7 +459,7 @@ button:hover {
             </div>
             
             <input type="hidden" id="selectedSessions" name="selectedSessions">
-            <button type="submit" onclick="submitRequest()" class="submit">Submit</button>
+            <button type="submit" class="submit">Submit</button>
         </form>
     </div>
 </div>
