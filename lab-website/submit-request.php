@@ -1,30 +1,53 @@
 <?php
 require "db_connection.php"; // Include your database connection
 
-// Read the JSON input from the request
-$data = json_decode(file_get_contents("php://input"), true);
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Extract data from the form POST request
+    $date = $_POST['date'] ?? '';
+    $subject = $_POST['subject'] ?? '';
+    $generation = $_POST['generation'] ?? '';
+    $app = $_POST['app'] ?? '';
+    $numberStudent = $_POST['numberStudent'] ?? 0;
+    $other = $_POST['other'] ?? '';
+    $sessions = $_POST['selectedSessions'] ?? '';
 
-// Extract data from the request
-$date = $data['date'];
-$subject = $data['subject'];
-$generation = $data['generation'];
-$app = $data['app'];
-$numberStudent = $data['numberStudent'];
-$other = $data['other'];
-$sessions = implode(',', $data['session_id']); // Convert sessions array to a string
+    // Prepare SQL statement to prevent SQL injection
+    $stmt = $con->prepare("INSERT INTO information (date, subject, generation, app, number_students, other, session_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssiss", $date, $subject, $generation, $app, $numberStudent, $other, $sessions);
 
-// Prepare SQL statement to prevent SQL injection
-$stmt = $con->prepare("INSERT INTO information (date, subject, generation, app, number_students, other, session_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("ssssiss", $date, $subject, $generation, $app, $numberStudent, $other, $sessions);
+    // Execute the prepared statement
+    if ($stmt->execute()) {
+        // Success: show a SweetAlert success message and then redirect
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+        echo "<script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Request successfully submitted!',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'schedule-user.php';
+                }
+            });
+        </script>";
+    } else {
+        // Error: output the error for debugging
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+        echo "<script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'There was an issue submitting your request: " . $con->error . "'
+            });
+        </script>";
+    }
 
-if ($stmt->execute()) {
-    // Send a JSON response back to the JavaScript
-    echo json_encode(["success" => true]);
+    // Close the statement and the connection
+    $stmt->close();
+    $con->close();
+
 } else {
-    echo json_encode(["success" => false, "error" => $con->error]);
+    // Handle invalid request methods
+    echo json_encode(["success" => false, "message" => "Invalid request method."]);
 }
-
-// Close the statement and the connection
-$stmt->close();
-$con->close();
-?>
