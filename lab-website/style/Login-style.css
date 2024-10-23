@@ -90,14 +90,15 @@ button.create-account {
     cursor: pointer;
     transition: background-color 0.3s;
     margin-top: 20px;
+    border-radius: 5px;
 }
 
 button[type="submit"] {
-    background-color: #007bff;
+    background-color: #016374;
 }
 
 button[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: #00718b;
 }
 
 button.create-account {
