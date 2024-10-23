@@ -37,13 +37,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Check user type and redirect accordingly
             if ($user['type'] == 'admin') { // Fixed here to match the column name
                 header("Location: schedule-admin.html");
-<<<<<<< HEAD
-            } else  { // Fixed here to match the column name
-                header("Location: schedule-users copy.php");
-=======
+
             } else if ($user['type'] == 'user') { // Fixed here to match the column name
                 header("Location: schedule-user.php");
->>>>>>> main
             }
             exit;
         } else {
