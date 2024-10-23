@@ -385,107 +385,83 @@ button:hover {
         gap: 10px;
         margin-top: 10px;
     }
-
-    footer {
-        font-size: 1.1em;
-        padding: 1.5em 0;
-    }
 }
 
     </style>
 </head>
 <body>
-    <!-- Header Section -->
-    <header class="site-header">
-        <div class="container">
-            <h1>Welcome to Request Lab</h1>
-            <nav>
-                <ul>
-                    <li><a href="schedule-user.html">Home</a></li>
-                    <li><a href="Contact.html">Contact</a></li>
-                    <li><a href="About.html">About</a></li>
-                    <li><a href="Profile.php">Profile</a></li>
-                    <li>
-                        <form action="logout.php" method="post">
-                            <button type="submit">Logout</button>
-                        </form>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<header class="site-header">
+        <h1>Lab Access Requests</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Help</a></li>
+            </ul>
+        </nav>
+</header>
 
-    <!-- Main Content Section -->
-    <main>
-        <div class="card-container">
-            <?php
-            // Fetch data from the database
-            $sql = "SELECT * FROM lab"; // Replace 'labs' with your actual table name
-            $result = $con->query($sql);
+<main>
+<div class="card-container">
+          <div class="card request-lab" >
+                <img src="https://cdn-icons-png.flaticon.com/512/4675/4675642.png" alt="Lab Image">
+                <h2>lab010</h2>    
+            </div>
+            <div class="card request-lab" >
+                <img src="https://cdn-icons-png.flaticon.com/512/4675/4675642.png" alt="Lab Image">
+                <h2>lab011</h2>    
+            </div>
+            <div class="card request-lab" >
+                <img src="https://cdn-icons-png.flaticon.com/512/4675/4675642.png" alt="Lab Image">
+                <h2>lab012</h2>    
+            </div>
+   </div>
+</main>
 
-            if ($result->num_rows > 0) {
-                // Loop through each lab record
-                while ($row = $result->fetch_assoc()) {
-                    echo '<div class="card request-lab">';
-                    echo '<img src="https://cdn-icons-png.flaticon.com/512/4675/4675642.png" alt="Lab Image">';
-                    echo '<h2>' . htmlspecialchars($row["name_lab"]) . '</h2>';
-                    if ($row["lab_status"] == "closed") {
-                        echo '<p>The lab is closed.</p>';
-                    } else {
-                        echo '<p>The lab is open.</p>';
-                    }
-                    echo '</div>';
-                }
-            } else {
-                echo '<p>No lab records found.</p>';
-            }
 
-            // Close the database connection
-            $con->close();
-            ?>
-        </div>
-    </main>
 
-    <!-- Footer Section -->
-    <footer class="site-footer">
-        <div class="container">
-            <p>&copy; 2024 Dong Darong. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Custom Alert Modal -->
-    <div id="customAlert" class="modal">
-        <div class="modal-content">
-            <h2>Request Lab Access</h2>
-            <span class="close-btn" aria-label="Close" onclick="closeCustomAlert()">&times;</span>
+<!-- Custom Alert Modal -->
+<div id="customAlert" class="modal">
+    <div class="modal-content">
+        <h2>Request Lab Access</h2>
+        <span class="close-btn" aria-label="Close" onclick="closeCustomAlert()">&times;</span>
+        
+        <!-- Form starts here -->
+        <form id="labRequestForm" action="submit-request copy.php" method="post">
             <p>Please enter your information to request access:</p>
-            <input type="date" id="date">
-            <input type="text" id="subject" placeholder="Enter your subject">
-            <input type="text" id="generation" placeholder="Enter your generation">
-            <input type="text" id="app" placeholder="Enter your app">
-            <input type="number" id="numberStudent" placeholder="Enter your number of students">
-            <input type="text" id="other" placeholder="Other...">
-    
+            <input type="date" id="date" name="date" required>
+            <input type="text" id="subject" name="subject" placeholder="Enter your subject" required>
+            <input type="text" id="generation" name="generation" placeholder="Enter your generation" required>
+            <input type="text" id="app" name="app" placeholder="Enter your app" required>
+            <input type="number" id="numberStudent" name="numberStudent" placeholder="Enter your number of students" required>
+            <input type="text" id="other" name="other" placeholder="Other...">
+            
             <!-- Session Selection Buttons -->
             <p>Select Session (Max 3)</p>
             <div class="session-buttons">
-                <button class="session-btn" onclick="selectSession(this)">1</button>
-                <button class="session-btn" onclick="selectSession(this)">2</button>
-                <button class="session-btn" onclick="selectSession(this)">3</button>
-                <h3>Afternoon</h3>
-                <br>
-                <button class="session-btn" onclick="selectSession(this)">4</button>
-                <button class="session-btn" onclick="selectSession(this)">5</button>
-                <button class="session-btn" onclick="selectSession(this)">6</button>
+                <button type="button" class="session-btn" onclick="selectSession(this)">1</button>
+                <button type="button" class="session-btn" onclick="selectSession(this)">2</button>
+                <button type="button" class="session-btn" onclick="selectSession(this)">3</button>
+                <h3>Afternoon</h3><br>
+                <button type="button" class="session-btn" onclick="selectSession(this)">4</button>
+                <button type="button" class="session-btn" onclick="selectSession(this)">5</button>
+                <button type="button" class="session-btn" onclick="selectSession(this)">6</button>
             </div>
-    
-            <button type="button" onclick="submitRequest()" class="submit">Submit</button>
-        </div>
+            
+            <input type="hidden" id="selectedSessions" name="selectedSessions">
+            <button type="submit" class="submit">Submit</button>
+        </form>
     </div>
+</div>
 
-    <!-- Include external JavaScript file -->
-    <script >
-        let selectedSessions = [];
+<!-- Footer -->
+<footer class="site-footer">
+    <p>Lab Access © 2023</p>
+</footer>
+
+<script>
+// let selectedSessions = [];
 
 // Function to open the custom alert modal and clear previous requests
 function openCustomAlert() {
@@ -511,54 +487,10 @@ function resetForm() {
     // Clear selected sessions
     selectedSessions = [];
     document.querySelectorAll('.session-btn').forEach(function(button) {
-        button.classList.remove('selected'); // Remove the 'selected' class from all session buttons
-    });
-}
-
-// Function to select/deselect a session
-function selectSession(button) {
-    const maxSessions = 3;
-    const sessionNumber = button.textContent.trim();
-
-    if (selectedSessions.includes(sessionNumber)) {
-        // Deselect the session
-        selectedSessions = selectedSessions.filter(num => num !== sessionNumber);
         button.classList.remove('selected');
-    } else if (selectedSessions.length < maxSessions) {
-        // Select the session
-        selectedSessions.push(sessionNumber);
-        button.classList.add('selected');
-    } else {
-        Swal.fire('Maximum 3 sessions can be selected.');
-    }
-}
+    });
+    document.getElementById('selectedSessions').value = ''; // Reset hidden input
 
-// Function to handle the submission of the alert form
-function submitRequest() {
-    const date = document.getElementById("date").value;
-    const subject = document.getElementById("subject").value;
-    const generation = document.getElementById("generation").value;
-    const app = document.getElementById("app").value;
-    const numberStudent = document.getElementById("numberStudent").value;
-    const other = document.getElementById("other").value;
-
-    // Validate form fields
-    if (date && subject && generation && app && numberStudent && selectedSessions.length > 0) {
-        Swal.fire({
-            position: "top-center",
-            icon: "success",
-            title: "Your request was successfully submitted",
-            showConfirmButton: false,
-            timer: 1500
-        });
-        closeCustomAlert();
-    } else {
-        Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Please fill in all fields and select at least one session."
-        });
-    }
 }
 
 // Attach click event to 'request-lab' boxes
@@ -568,7 +500,7 @@ document.querySelectorAll('.request-lab').forEach(function(card) {
         openCustomAlert(); // Show the custom alert modal
     });
 });
+</script>
 
-    </script>
 </body>
 </html>
