@@ -411,13 +411,13 @@ button:hover {
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                echo '<div class="card request-lab">';
+                echo '<div class="card request-lab" >';
                 
                 // Display the image from the 'image-lab' field
                 echo '<img src="' . htmlspecialchars($row["image-lab"]) . '" alt="Lab Image">';
                 
                 // Add class to the h2 element based on the 'ID' field
-                echo '<h2 value="' . htmlspecialchars($row["ID"]) . '">' . htmlspecialchars($row["name_lab"]) . '</h2>';
+                echo '<h2>' . htmlspecialchars($row["name_lab"]) . '</h2>';
                 
                 echo '</div>';
             }

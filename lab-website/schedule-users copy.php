@@ -403,30 +403,20 @@ button:hover {
 </header>
 
 <main>
-    <div class="card-container">
-        <?php
-        // Fetch lab data from the database
-        $sql = "SELECT * FROM lab";
-        $result = $con->query($sql);
-
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo '<div class="card request-lab">';
-                
-                // Display the image from the 'image-lab' field
-                echo '<img src="' . htmlspecialchars($row["image-lab"]) . '" alt="Lab Image">';
-                
-                // Add class to the h2 element based on the 'ID' field
-                echo '<h2 class="' . htmlspecialchars($row["ID"]) . '">' . htmlspecialchars($row["name_lab"]) . '</h2>';
-                
-                echo '</div>';
-            }
-        } else {
-            echo '<p>No lab records found.</p>';
-        }
-        $con->close();
-        ?>
-    </div>
+<div class="card-container">
+          <div class="card request-lab" >
+                <img src="https://cdn-icons-png.flaticon.com/512/4675/4675642.png" alt="Lab Image">
+                <h2>lab010</h2>    
+            </div>
+            <div class="card request-lab" >
+                <img src="https://cdn-icons-png.flaticon.com/512/4675/4675642.png" alt="Lab Image">
+                <h2>lab011</h2>    
+            </div>
+            <div class="card request-lab" >
+                <img src="https://cdn-icons-png.flaticon.com/512/4675/4675642.png" alt="Lab Image">
+                <h2>lab012</h2>    
+            </div>
+   </div>
 </main>
 
 

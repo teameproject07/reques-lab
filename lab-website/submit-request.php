@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $app = $_POST['app'] ?? '';
     $numberStudent = $_POST['numberStudent'] ?? 0;
     $other = $_POST['other'] ?? '';
-    $lab_id = $_POST['lab_id'] ?? 0;
+    // $lab_id = $_POST['lab_id'] ?? 0;
     
     // Extract the selected sessions, and ensure it's sanitized before inserting into the DB
     $sessions = $_POST['selectedSessions'] ?? '';

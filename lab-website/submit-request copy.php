@@ -11,15 +11,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $app = $_POST['app'] ?? '';
     $numberStudent = $_POST['numberStudent'] ?? 0;
     $other = $_POST['other'] ?? '';
+    $lab_id = $_POST['lab_id']?? 0; // Add the lab ID if needed for your application
     
     // Extract the selected sessions, and ensure it's sanitized before inserting into the DB
     $sessions = $_POST['selectedSessions'] ?? '';
     
     // Prepare SQL statement to prevent SQL injection
-    $stmt = $con->prepare("INSERT INTO information (date, subject, generation, app, number_students, other, session_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $con->prepare("INSERT INTO information (date, subject, generation, app, number_students, other, session_id, lab_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
     
     // Bind the parameters to the statement
-    $stmt->bind_param("ssssiss", $date, $subject, $generation, $app, $numberStudent, $other, $sessions);
+    $stmt->bind_param("ssssisss", $date, $subject, $generation, $app, $numberStudent, $other, $sessions, $lab_id);
 
     // Execute the prepared statement
     if ($stmt->execute()) {
@@ -33,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     //     text: 'Please fill out all fields and select up to 3 sessions.',
     // });
     // </script>";
-    header("Location: schedule-user.php");
+    header("Location: schedule-users copy.php");
     } else {
         // In case of an error, output the error for debugging
         echo json_encode(["success" => false, "error" => $con->error]);
