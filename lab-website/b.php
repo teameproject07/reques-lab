@@ -17,18 +17,20 @@ $endDate->modify('sunday this week');
 $startDateFormatted = $startDate->format('Y-m-d');
 $endDateFormatted = $endDate->format('Y-m-d');
 
-$sql = "SELECT i.*, u.full_name, u.phone, l.name_lab, i.subject
-        FROM information i 
-        JOIN users u ON i.user_id = u.ID 
+// Modify SQL to group by lab_id, date, and session_id and use MIN(ID)
+$sql = "SELECT MIN(i.ID) as min_id, i.*, u.full_name, u.phone, l.name_lab, i.subject
+        FROM information i
+        JOIN users u ON i.user_id = u.ID
         JOIN lab l ON i.lab_id = l.ID
         WHERE i.date BETWEEN '$startDateFormatted' AND '$endDateFormatted'
+        GROUP BY i.lab_id, i.date, i.session_id
         ORDER BY i.date, i.session_id ASC";
+
 $result = $con->query($sql);
 
 if (!$result) {
     die("Query failed: " . $con->error);
 }
-
 
 $schedule = [
     'Monday' => ['session1' => [], 'session2' => [], 'session3' => []],
@@ -40,41 +42,27 @@ $schedule = [
     'Sunday' => ['session1' => [], 'session2' => [], 'session3' => []],
 ];
 
-
-// Existing code...
+// Fetch data and populate schedule
 while ($row = $result->fetch_assoc()) {
     // Determine the day of the week
     $dayOfWeek = date('l', strtotime($row['date']));
 
     // Map the session_id to your session keys
     $sessionMapping = [
-        1 => 'session1',           // 07:00 - 08:30
-        2 => ['session1', 'session2'], // 07:00 - 10:20
-        3 => ['session1', 'session2', 'session3'], // 07:00 - 12:00
+        1 => 'session1',    // 07:00 - 08:30
+        2 => 'session2',    // 09:00 - 10:20
+        3 => 'session3'     // 10:30 - 12:00
     ];
 
-    $sessionKeys = $sessionMapping[$row['session_id']] ?? null;
+    $sessionKey = $sessionMapping[$row['session_id']] ?? null;
 
-    if ($sessionKeys && array_key_exists($dayOfWeek, $schedule)) {
-        // If it's a single session key, wrap it in an array for consistency
-        if (!is_array($sessionKeys)) {
-            $sessionKeys = [$sessionKeys];
-        }
-
-        // Append the row to the session array for each session key
-        foreach ($sessionKeys as $sessionKey) {
-            $schedule[$dayOfWeek][$sessionKey][] = $row;
-        }
+    // If the session key is valid and the day exists in the schedule
+    if ($sessionKey && array_key_exists($dayOfWeek, $schedule)) {
+        // Append the data if it's a different lab_id or unique entry
+        $schedule[$dayOfWeek][$sessionKey][] = $row;
     }
 }
-
-// The rest of your code remains unchanged...
-
-
-
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -131,36 +119,42 @@ while ($row = $result->fetch_assoc()) {
                 <thead>
                     <tr>
                         <th>ម៉ោង</th>
-                        <th>ច័ន្ទ</th>
-                        <th>អង្គារ</th>
-                        <th>ពុធ</th>
-                        <th>ប្រហស្បតិ៍</th>
-                        <th>សុក្រ</th>
-                        <th>សៅរ៍​</th>
-                        <th>អាទិត្យ</th>
+                        <th colspan="">ច័ន្ទ</th>
+                        <th colspan="">អង្គារ</th>
+                        <th colspan="">ពុធ</th>
+                        <th colspan="">ប្រហស្បតិ៍</th>
+                        <th colspan="">សុក្រ</th>
+                        <th colspan="">សៅរ៍</th>
+                        <th colspan="">អាទិត្យ</th>
                     </tr>
                 </thead>
-               <tbody>
-    <?php foreach (['session1' => 'សេសិនទី១', 'session2' => 'សេសិនទី២', 'session3' => 'សេសិនទី៣'] as $sessionId => $sessionTitle): ?>
-        <tr>
-            <td><strong><?php echo $sessionTitle; ?></strong><br>(<?php echo $sessionId === 'session1' ? '7:00 - 8:30' : ($sessionId === 'session2' ? '9:00 - 10:20' : '10:30 - 12:00'); ?>)<br></td>
-            <?php foreach (['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] as $day): ?>
-                <td>
-                    <?php if (!empty($schedule[$day][$sessionId])): ?>
-                        <?php foreach ($schedule[$day][$sessionId] as $Data): ?>
-                            
-                            <?php echo  "<strong>ឈ្មោះ៖</strong>{$Data['full_name']}" ?><br>
-                            <?php echo "<strong>លេខទូរស័ព្ទ៖</strong> {$Data['phone']}" ?><br>
-                            <?php echo "<strong>បន្ទប់៖</strong> {$Data['name_lab']}<br>"?>
-                            <?php echo "<strong>មុខវិជ្ជា</strong> {$Data['subject']}<br>"?>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        គ្មានទិន្នន័យ
-                    <?php endif; ?>
-                </td>
-            <?php endforeach; ?>
-        </tr>
-    <?php endforeach; ?>
+                <tbody>
+                    <?php foreach (['session1' => 'សេសិនទី១', 'session2' => 'សេសិនទី២', 'session3' => 'សេសិនទី៣'] as $sessionId => $sessionTitle): ?>
+                        <tr>
+                            <td><strong><?php echo $sessionTitle; ?></strong><br>(<?php echo $sessionId === 'session1' ? '7:00 - 8:30' : ($sessionId === 'session2' ? '9:00 - 10:20' : '10:30 - 12:00'); ?>)<br></td>
+                            <?php foreach (['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] as $day): ?>
+                                <td>
+                                    <?php if (!empty($schedule[$day][$sessionId])): ?>
+                                        <table>
+                                            <tr>
+                                                <?php foreach ($schedule[$day][$sessionId] as $Data): ?>
+                                                    <td>
+                                                        <?php echo "<strong>ឈ្មោះ៖</strong> {$Data['full_name']}<br>"; ?>
+                                                        <?php echo "<strong>លេខទូរស័ព្ទ៖</strong> {$Data['phone']}<br>"; ?>
+                                                        <?php echo "<strong>បន្ទប់៖</strong> {$Data['name_lab']}<br>"; ?>
+                                                        <?php echo "<strong>មុខវិជ្ជា:</strong> {$Data['subject']}<br>"; ?>
+                                                    </td>
+                                                <?php endforeach; ?>
+                                            </tr>
+                                        </table>
+                                    <?php else: ?>
+                                        ទំនេរ
+                                    <?php endif; ?>
+                                </td>
+                            <?php endforeach; ?>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
             </table>
         </div>
     </div>
