@@ -82,7 +82,6 @@ while ($row = $result->fetch_assoc()) {
         <div class="menu">
             <a href="table-request-morning.html">វេនព្រឹក</a>
             <a href="table-request-Afternoon.html">វេនរសៀល</a>
-            <a href="#">ទាញយក PDF file</a>
             <a href="Profile.php">Profile</a>
         </div>
     </div>
@@ -139,16 +138,16 @@ while ($row = $result->fetch_assoc()) {
                                             <tr>
                                                 <?php foreach ($schedule[$day][$sessionId] as $Data): ?>
                                                     <td>
-                                                        <?php echo "<strong>ឈ្មោះ៖</strong> {$Data['full_name']}<br>"; ?>
-                                                        <?php echo "<strong>លេខទូរស័ព្ទ៖</strong> {$Data['phone']}<br>"; ?>
-                                                        <?php echo "<strong>បន្ទប់៖</strong> {$Data['name_lab']}<br>"; ?>
-                                                        <?php echo "<strong>មុខវិជ្ជា:</strong> {$Data['subject']}<br>"; ?>
+                                                        <?php echo "<strong style='line-height: 1.5;'>{$Data['full_name']}</strong><br>"; ?>
+                                                        <?php echo "<strong style='line-height: 1.5;'>{$Data['phone']}</strong><br>"; ?>
+                                                        <?php echo "<strong style='line-height: 1.5;'>{$Data['name_lab']}</strong><br>"; ?>
+                                                        <?php echo "<strong style='line-height: 1.5;'>{$Data['subject']}</strong><br>"; ?>
                                                     </td>
                                                 <?php endforeach; ?>
                                             </tr>
                                         </table>
                                     <?php else: ?>
-                                        ទំនេរ
+                                       <strong>ទំនេរ</strong> 
                                     <?php endif; ?>
                                 </td>
                             <?php endforeach; ?>
