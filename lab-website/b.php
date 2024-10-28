@@ -77,7 +77,7 @@ while ($row = $result->fetch_assoc()) {
 <body>
     <!-- Header Section -->
     <div class="header">
-        <a href="schedule-user.html" class="back-button">&larr;</a>
+        <a href="schedule-user.php" class="back-button">&larr;</a>
         <h1>តារាងកាលវិភាគប្រើប្រាស់បន្ទប់ប្រើប្រាស់កុំព្យូទ័រ ( វេនរសៀល )</h1>
         <div class="menu">
             <a href="table-request-morning.html">វេនព្រឹក</a>

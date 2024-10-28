@@ -394,16 +394,21 @@ button:hover {
         <h1>Lab Access Requests</h1>
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Help</a></li>
+                <li><a href="schedule-user.php">Home</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+                <li><a href="Profile.php">Profile</a></li>
             </ul>
         </nav>
 </header>
 
 <main>
     <div class="card-container">
+        <a href="b.php">
+        <div class="card">
+            <img src="https://cdn-icons-png.flaticon.com/512/4675/4675642.png" alt="Lab Image">
+            <h2>Table Request</h2>
+        </div></a>
         <?php
         // Fetch lab data from the database
         $sql = "SELECT * FROM lab";
