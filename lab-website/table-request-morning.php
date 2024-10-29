@@ -33,13 +33,13 @@ if (!$result) {
 }
 
 $schedule = [
-    'Monday' => ['session4' => [], 'session5' => [], 'session6' => []],
-    'Tuesday' => ['session4' => [], 'session5' => [], 'session6' => []],
-    'Wednesday' => ['session4' => [], 'session5' => [], 'session6' => []],
-    'Thursday' => ['session4' => [], 'session5' => [], 'session6' => []],
-    'Friday' => ['session4' => [], 'session5' => [], 'session6' => []],
-    'Saturday' => ['session4' => [], 'session5' => [], 'session6' => []],
-    'Sunday' => ['session4' => [], 'session5' => [], 'session6' => []],
+    'Monday' => ['session1' => [], 'session2' => [], 'session3' => []],
+    'Tuesday' => ['session1' => [], 'session2' => [], 'session3' => []],
+    'Wednesday' => ['session1' => [], 'session2' => [], 'session3' => []],
+    'Thursday' => ['session1' => [], 'session2' => [], 'session3' => []],
+    'Friday' => ['session1' => [], 'session2' => [], 'session3' => []],
+    'Saturday' => ['session1' => [], 'session2' => [], 'session3' => []],
+    'Sunday' => ['session1' => [], 'session2' => [], 'session3' => []],
 ];
 
 // Fetch data and populate schedule
@@ -49,9 +49,9 @@ while ($row = $result->fetch_assoc()) {
 
     // Map the session_id to your session keys
     $sessionMapping = [
-        1 => 'session4',    // 02:00 - 03:30
-        2 => 'session5',    // 03:40 - 04:50
-        3 => 'session6'     // 05:00 - 06:30
+        1 => 'session1',    // 07:00 - 08:30
+        2 => 'session2',    // 09:00 - 10:20
+        3 => 'session3'     // 10:30 - 12:00
     ];
 
     $sessionKey = $sessionMapping[$row['session_id']] ?? null;
@@ -330,7 +330,7 @@ p {
     <!-- Header Section -->
     <div class="header">
         <a href="schedule-user.php" class="back-button">&larr;</a>
-        <h1>តារាងកាលវិភាគប្រើប្រាស់បន្ទប់ប្រើប្រាស់កុំព្យូទ័រ ( វេនរសៀល )</h1>
+        <h1>តារាងកាលវិភាគប្រើប្រាស់បន្ទប់ប្រើប្រាស់កុំព្យូទ័រ ( វេនព្រឹក )</h1>
         <div class="menu">
             <a href="table-request-morning.php">វេនព្រឹក</a>
             <a href="table-request-Afternoon.php">វេនរសៀល</a>
@@ -373,9 +373,9 @@ p {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach (['session4' => 'សេសិនទី៤', 'session5' => 'សេសិនទី៥', 'session6' => 'សេសិនទី៦'] as $sessionId => $sessionTitle): ?>
+                    <?php foreach (['session1' => 'សេសិនទី១', 'session2' => 'សេសិនទី២', 'session3' => 'សេសិនទី៣'] as $sessionId => $sessionTitle): ?>
                         <tr>
-                            <td><strong><?php echo $sessionTitle; ?></strong><br>(<?php echo $sessionId === 'session4' ? '2:00 - 3:30' : ($sessionId === 'session5' ? '3:50 - 5:20' : '5:30 - 6:30'); ?>)<br></td>
+                            <td><strong><?php echo $sessionTitle; ?></strong><br>(<?php echo $sessionId === 'session1' ? '7:00 - 8:30' : ($sessionId === 'session2' ? '9:00 - 10:20' : '10:30 - 12:00'); ?>)<br></td>
                             <?php foreach (['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] as $day): ?>
                                 <td>
                                     <?php if (!empty($schedule[$day][$sessionId])): ?>
@@ -413,13 +413,13 @@ p {
                     សម្រាប់ថ្ងៃទី <span class="date"><?php echo $startDate->format('d'); ?></span> ខែ <span
                         class="date"><?php echo $startDate->format('m'); ?></span> ឆ្នាំ <span
                         class="date"><?php echo $startDate->format('Y'); ?></span> <span
-                        style="color:rgb(53, 75, 199)">&nbsp;&nbsp; សាលបច្ចេកវិទ្យាព័ត៏មាន (lab IT,lab Network)</span>
+                        style="color:rgb(53, 75, 199)">&nbsp;&nbsp; សាលសំណងសុីវិល (lab civil)</span>
                 <?php else: ?>
                     សម្រាប់ថ្ងៃទី <span class="date"><?php echo $startDate->format('d'); ?></span> ​ដល់ថ្ងៃទី <span
                         class="date"><?php echo $endDate->format('d'); ?></span> ខែ <span
                         class="date"><?php echo $endDate->format('m'); ?></span> ឆ្នាំ <span
                         class="date"><?php echo $endDate->format('Y'); ?></span> <span
-                        style="color:rgb(53, 75, 199)">&nbsp;&nbsp; សាលបច្ចេកវិទ្យាព័ត៏មាន (lab IT,lab Network)</span>
+                        style="color:rgb(53, 75, 199)">&nbsp;&nbsp; សាលសំណងសុីវិល (lab civil)</span>
                 <?php endif; ?>
             </h3>
         </div>
@@ -438,9 +438,9 @@ p {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach (['session4' => 'សេសិនទី៤', 'session5' => 'សេសិនទី៥', 'session6' => 'សេសិនទី៦'] as $sessionId => $sessionTitle): ?>
+                    <?php foreach (['session1' => 'សេសិនទី១', 'session2' => 'សេសិនទី២', 'session3' => 'សេសិនទី៣'] as $sessionId => $sessionTitle): ?>
                         <tr>
-                            <td><strong><?php echo $sessionTitle; ?></strong><br>(<?php echo $sessionId === 'session4' ? '2:00 - 3:30' : ($sessionId === 'session5' ? '3:50 - 5:20' : '5:30 - 6:30'); ?>)<br></td>
+                            <td><strong><?php echo $sessionTitle; ?></strong><br>(<?php echo $sessionId === 'session1' ? '7:00 - 8:30' : ($sessionId === 'session2' ? '9:00 - 10:20' : '10:30 - 12:00'); ?>)<br></td>
                             <?php foreach (['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] as $day): ?>
                                 <td>
                                     <?php if (!empty($schedule[$day][$sessionId])): ?>
@@ -467,8 +467,9 @@ p {
             </table>
         </div>
     </div>
-       <!-- Main Content Section -->
-       <div class="table-responsive" >
+
+    <!-- Main Content Section -->
+    <div class="table-responsive" >
         
         <div>
             <h3>
@@ -477,13 +478,13 @@ p {
                     សម្រាប់ថ្ងៃទី <span class="date"><?php echo $startDate->format('d'); ?></span> ខែ <span
                         class="date"><?php echo $startDate->format('m'); ?></span> ឆ្នាំ <span
                         class="date"><?php echo $startDate->format('Y'); ?></span> <span
-                        style="color:rgb(53, 75, 199)">&nbsp;&nbsp; សាលបច្ចេកវិទ្យាព័ត៏មាន (lab IT,lab Network)</span>
+                        style="color:rgb(53, 75, 199)">&nbsp;&nbsp; សាលទូទៅ (lab010,lab13)</span>
                 <?php else: ?>
                     សម្រាប់ថ្ងៃទី <span class="date"><?php echo $startDate->format('d'); ?></span> ​ដល់ថ្ងៃទី <span
                         class="date"><?php echo $endDate->format('d'); ?></span> ខែ <span
                         class="date"><?php echo $endDate->format('m'); ?></span> ឆ្នាំ <span
                         class="date"><?php echo $endDate->format('Y'); ?></span> <span
-                        style="color:rgb(53, 75, 199)">&nbsp;&nbsp; សាលបច្ចេកវិទ្យាព័ត៏មាន (lab IT,lab Network)</span>
+                        style="color:rgb(53, 75, 199)">&nbsp;&nbsp; សាលទូទៅ​ (lab010,lab13)</span>
                 <?php endif; ?>
             </h3>
         </div>
@@ -502,9 +503,9 @@ p {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach (['session4' => 'សេសិនទី៤', 'session5' => 'សេសិនទី៥', 'session6' => 'សេសិនទី៦'] as $sessionId => $sessionTitle): ?>
+                    <?php foreach (['session1' => 'សេសិនទី១', 'session2' => 'សេសិនទី២', 'session3' => 'សេសិនទី៣'] as $sessionId => $sessionTitle): ?>
                         <tr>
-                            <td><strong><?php echo $sessionTitle; ?></strong><br>(<?php echo $sessionId === 'session4' ? '2:00 - 3:30' : ($sessionId === 'session5' ? '3:50 - 5:20' : '5:30 - 6:30'); ?>)<br></td>
+                            <td><strong><?php echo $sessionTitle; ?></strong><br>(<?php echo $sessionId === 'session1' ? '7:00 - 8:30' : ($sessionId === 'session2' ? '9:00 - 10:20' : '10:30 - 12:00'); ?>)<br></td>
                             <?php foreach (['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] as $day): ?>
                                 <td>
                                     <?php if (!empty($schedule[$day][$sessionId])): ?>
