@@ -17,35 +17,6 @@ if (empty($username)) {
     <title>Lab Requests</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="style/schedule-user.css">
-    <style>
-        /* Additional styling for session buttons */
-        .session-btn.selected {
-            background-color: #4CAF50;
-            color: #fff;
-        }
-        /* Basic modal and form styling */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            padding-top: 100px;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 500px;
-        }
-        .close-btn {
-            float: right;
-            font-size: 1.5em;
-            cursor: pointer;
-        }
-    </style>
 </head>
 <body>
 <header class="site-header">
@@ -111,7 +82,7 @@ if (empty($username)) {
 
             <!-- Session Selection Buttons -->
             <p>Select Session (Max 3)</p>
-            <div class="session-buttons">
+            <div class="session-inputs">
             <input type="checkbox" name="selectedSessions[]" value="1" onclick="limitSelection(this)">
             <input type="checkbox" name="selectedSessions[]" value="2" onclick="limitSelection(this)">
             <input type="checkbox" name="selectedSessions[]" value="3" onclick="limitSelection(this)">
@@ -150,24 +121,18 @@ function resetForm() {
     document.getElementById("numberStudent").value = "";
     document.getElementById("other").value = "";
     selectedSessions = [];
-    document.querySelectorAll('.session-btn').forEach(button => button.classList.remove('selected'));
+    document.querySelectorAll('.session-inputs input[type="checkbox"]').forEach(checkbox => checkbox.checked = false);
     document.getElementById('selectedSessions').value = '';
 }
 
-function selectSession(button) {
-    const maxSessions = 3;
-    const sessionNumber = button.textContent.trim();
+function limitSelection(checkbox) {
+    const maxSelections = 3;
+    const selectedCheckboxes = document.querySelectorAll("input[name='selectedSessions[]']:checked");
 
-    if (selectedSessions.includes(sessionNumber)) {
-        selectedSessions = selectedSessions.filter(num => num !== sessionNumber);
-        button.classList.remove('selected');
-    } else if (selectedSessions.length < maxSessions) {
-        selectedSessions.push(sessionNumber);
-        button.classList.add('selected');
-    } else {
-        Swal.fire('Maximum 3 sessions can be selected.');
+    if (selectedCheckboxes.length > maxSelections) {
+        checkbox.checked = false; // Uncheck the checkbox if it exceeds the limit
+        Swal.fire('You can select a maximum of 3 sessions.');
     }
-    document.getElementById('selectedSessions').value = selectedSessions.join(',');
 }
 
 document.querySelectorAll('.request-lab').forEach(card => {
@@ -178,7 +143,6 @@ document.querySelectorAll('.request-lab').forEach(card => {
         openCustomAlert();
     });
 });
-
 </script>
 
 </body>
