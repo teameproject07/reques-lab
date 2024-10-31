@@ -435,6 +435,7 @@ button:hover {
         <!-- Form starts here -->
         <form id="labRequestForm" action="submit-request copy.php" method="post">
             <p>Please enter your information to request access:</p>
+            <input type="hidden" name="lab_id" require >
             <input type="date" id="date" name="date" required>
             <input type="text" id="subject" name="subject" placeholder="Enter your subject" required>
             <input type="text" id="generation" name="generation" placeholder="Enter your generation" required>
