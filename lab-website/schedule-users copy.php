@@ -212,7 +212,7 @@ button:hover {
     background-color: #7caff2;
 }
 .session.selected{
-    background-color: #945454;
+    background-color: #17438a;
     color: white;
 }
 .session input[type="checkbox"] {
@@ -423,25 +423,23 @@ function resetForm() {
    
     document.querySelectorAll('.session-btn').forEach(function(button) {
         button.classList.remove('selected');
->>>>>>> session3
     });
     
 
-<<<<<<< HEAD
-
-=======
     document.querySelectorAll('.session-inputs input[type="checkbox"]').forEach(checkbox => checkbox.checked = false);
     document.getElementById('selectedSessions').value = '';
 >>>>>>> session3
 }
 
-function limitSelection(checkbox) {
+function limitSessionSelection(checkbox) {
     const maxSelections = 3;
     const selectedCheckboxes = document.querySelectorAll("input[name='selectedSessions[]']:checked");
 
     if (selectedCheckboxes.length > maxSelections) {
         checkbox.checked = false; // Uncheck the checkbox if it exceeds the limit
         Swal.fire('You can select a maximum of 3 sessions.');
+    } else {
+        checkbox.closest('label').classList.toggle('selected', checkbox.checked);
     }
 }
 
@@ -453,7 +451,16 @@ document.querySelectorAll('.request-lab').forEach(card => {
         openCustomAlert();
     });
 });
+
+// Attach the limitSessionSelection function to checkboxes
+document.querySelectorAll("input[name='selectedSessions[]']").forEach(checkbox => {
+    checkbox.addEventListener('click', function() {
+        limitSessionSelection(this);
+    });
+});
+
 </script>
 
 </body>
 </html>
+

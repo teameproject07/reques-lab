@@ -1,7 +1,12 @@
 <?php
 
 require "db_connection.php";
-
+session_start();
+$username = $_SESSION['username'] ?? ''; // Fetch username from session
+if (empty($username)) {
+    echo "Session username not set or empty.";
+    exit;
+}
 // Create a DateTime object for today
 $today = new DateTime();
 
@@ -345,16 +350,16 @@ p {
             <h3>
                 <br>
                 <?php if ($startDateFormatted === $endDateFormatted): ?>
-                    សម្រាប់ថ្ងៃទី <span class="date"><?php echo $startDate->format('d'); ?></span> ខែ <span
-                        class="date"><?php echo $startDate->format('m'); ?></span> ឆ្នាំ <span
-                        class="date"><?php echo $startDate->format('Y'); ?></span> <span
-                        style="color:rgb(53, 75, 199)">&nbsp;&nbsp; សាលបច្ចេកវិទ្យាព័ត៏មាន (lab IT,lab Network)</span>
+                    សម្រាប់ថ្ងៃទី <span class="date" style="color:red;"><?php echo $startDate->format('d'); ?></span> ខែ <span
+                        class="date" style="color:red;"><?php echo $startDate->format('m'); ?></span> ឆ្នាំ <span
+                        class="date" style="color:red;"><?php echo $startDate->format('Y'); ?></span> <span
+                        style="color:rgb(53, 75, 199)">&nbsp;&nbsp; សាលបច្ចេកវិទ្យាព័ត៏មាន (lab IT , lab Network)</span>
                 <?php else: ?>
-                    សម្រាប់ថ្ងៃទី <span class="date"><?php echo $startDate->format('d'); ?></span> ​ដល់ថ្ងៃទី <span
-                        class="date"><?php echo $endDate->format('d'); ?></span> ខែ <span
-                        class="date"><?php echo $endDate->format('m'); ?></span> ឆ្នាំ <span
-                        class="date"><?php echo $endDate->format('Y'); ?></span> <span
-                        style="color:rgb(53, 75, 199)">&nbsp;&nbsp; សាលបច្ចេកវិទ្យាព័ត៏មាន (lab IT,lab Network)</span>
+                    សម្រាប់ថ្ងៃទី <span class="date" style="color:red;"><?php echo $startDate->format('d'); ?></span> ​ដល់ថ្ងៃទី <span
+                        class="date" style="color:red;"><?php echo $endDate->format('d'); ?></span> ខែ <span
+                        class="date" style="color:red;"><?php echo $endDate->format('m'); ?></span> ឆ្នាំ <span
+                        class="date" style="color:red;"><?php echo $endDate->format('Y'); ?></span> <span
+                        style="color:rgb(53, 75, 199)">&nbsp;&nbsp; សាលបច្ចេកវិទ្យាព័ត៏មាន (lab IT , lab Network)</span>
                 <?php endif; ?>
             </h3>
         </div>
@@ -410,16 +415,16 @@ p {
             <h3>
                 <br>
                 <?php if ($startDateFormatted === $endDateFormatted): ?>
-                    សម្រាប់ថ្ងៃទី <span class="date"><?php echo $startDate->format('d'); ?></span> ខែ <span
-                        class="date"><?php echo $startDate->format('m'); ?></span> ឆ្នាំ <span
-                        class="date"><?php echo $startDate->format('Y'); ?></span> <span
-                        style="color:rgb(53, 75, 199)">&nbsp;&nbsp; សាលបច្ចេកវិទ្យាព័ត៏មាន (lab IT,lab Network)</span>
+                    សម្រាប់ថ្ងៃទី <span class="date" style="color:red;"><?php echo $startDate->format('d'); ?></span> ខែ <span
+                        class="date" style="color:red;"><?php echo $startDate->format('m'); ?></span> ឆ្នាំ <span
+                        class="date" style="color:red;"><?php echo $startDate->format('Y'); ?></span> <span
+                        style="color:rgb(53, 75, 199)">&nbsp;&nbsp; សាលសំណង់សុីវិល (lab civil)</span>
                 <?php else: ?>
-                    សម្រាប់ថ្ងៃទី <span class="date"><?php echo $startDate->format('d'); ?></span> ​ដល់ថ្ងៃទី <span
-                        class="date"><?php echo $endDate->format('d'); ?></span> ខែ <span
-                        class="date"><?php echo $endDate->format('m'); ?></span> ឆ្នាំ <span
-                        class="date"><?php echo $endDate->format('Y'); ?></span> <span
-                        style="color:rgb(53, 75, 199)">&nbsp;&nbsp; សាលបច្ចេកវិទ្យាព័ត៏មាន (lab IT,lab Network)</span>
+                    សម្រាប់ថ្ងៃទី <span class="date" style="color:red;"><?php echo $startDate->format('d'); ?></span> ​ដល់ថ្ងៃទី <span
+                        class="date" style="color:red;"><?php echo $endDate->format('d'); ?></span> ខែ <span
+                        class="date" style="color:red;"><?php echo $endDate->format('m'); ?></span> ឆ្នាំ <span
+                        class="date" style="color:red;"><?php echo $endDate->format('Y'); ?></span> <span
+                        style="color:rgb(53, 75, 199)">&nbsp;&nbsp; សាលសំណង់សុីវិល (lab civil)</span>
                 <?php endif; ?>
             </h3>
         </div>
@@ -474,16 +479,16 @@ p {
             <h3>
                 <br>
                 <?php if ($startDateFormatted === $endDateFormatted): ?>
-                    សម្រាប់ថ្ងៃទី <span class="date"><?php echo $startDate->format('d'); ?></span> ខែ <span
-                        class="date"><?php echo $startDate->format('m'); ?></span> ឆ្នាំ <span
-                        class="date"><?php echo $startDate->format('Y'); ?></span> <span
-                        style="color:rgb(53, 75, 199)">&nbsp;&nbsp; សាលបច្ចេកវិទ្យាព័ត៏មាន (lab IT,lab Network)</span>
+                    សម្រាប់ថ្ងៃទី <span class="date" style="color:red;"><?php echo $startDate->format('d'); ?></span> ខែ <span
+                        class="date" style="color:red;"><?php echo $startDate->format('m'); ?></span> ឆ្នាំ <span
+                        class="date" style="color:red;"><?php echo $startDate->format('Y'); ?></span> <span
+                        style="color:rgb(53, 75, 199)">&nbsp;&nbsp; សាលទូទៅ (lab013 , lab010)span>
                 <?php else: ?>
-                    សម្រាប់ថ្ងៃទី <span class="date"><?php echo $startDate->format('d'); ?></span> ​ដល់ថ្ងៃទី <span
-                        class="date"><?php echo $endDate->format('d'); ?></span> ខែ <span
-                        class="date"><?php echo $endDate->format('m'); ?></span> ឆ្នាំ <span
-                        class="date"><?php echo $endDate->format('Y'); ?></span> <span
-                        style="color:rgb(53, 75, 199)">&nbsp;&nbsp; សាលបច្ចេកវិទ្យាព័ត៏មាន (lab IT,lab Network)</span>
+                    សម្រាប់ថ្ងៃទី <span class="date" style="color:red;"><?php echo $startDate->format('d'); ?></span> ​ដល់ថ្ងៃទី <span
+                        class="date" style="color:red;"><?php echo $endDate->format('d'); ?></span> ខែ <span
+                        class="date" style="color:red;"><?php echo $endDate->format('m'); ?></span> ឆ្នាំ <span
+                        class="date" style="color:red;"><?php echo $endDate->format('Y'); ?></span> <span
+                        style="color:rgb(53, 75, 199)">&nbsp;&nbsp; សាលទូទៅ (lab013 , lab010)</span>
                 <?php endif; ?>
             </h3>
         </div>
