@@ -1,52 +1,87 @@
 <?php
-require "db_connection.php"; // Include your database connection
- // Include your database query
-// Ensure the form was submitted via POST
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+session_start();
+require "db_connection.php"; // Connect to database
 
-    // Extract data from the form POST request
+// Check for logged-in user
+if (isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+} else {
+    echo "Please log in to submit a lab request.";
+    exit;
+}
+
+// Get user ID from the database
+$userQuery = $con->prepare("SELECT ID FROM users WHERE username = ?");
+$userQuery->bind_param("s", $username);
+$userQuery->execute();
+$userQuery->bind_result($user_id);
+$userQuery->fetch();
+$userQuery->close();
+
+if (!$user_id) {
+    echo "User not found.";
+    exit;
+}
+
+// Process form submission
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $date = $_POST['date'] ?? '';
     $subject = $_POST['subject'] ?? '';
     $generation = $_POST['generation'] ?? '';
     $app = $_POST['app'] ?? '';
     $numberStudent = $_POST['numberStudent'] ?? 0;
     $other = $_POST['other'] ?? '';
-    $lab_id = $_POST['lab_id']?? 0; // Add the lab ID if needed for your application
-    
-    // Extract the selected sessions, and ensure it's sanitized before inserting into the DB
-    $sessions = $_POST['selectedSessions'] ?? '';
-    
-    // Prepare SQL statement to prevent SQL injection
-    $stmt = $con->prepare("INSERT INTO information (date, subject, generation, app, number_students, other, session_id, lab_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    
-    // Bind the parameters to the statement
-    $stmt->bind_param("ssssisss", $date, $subject, $generation, $app, $numberStudent, $other, $sessions, $lab_id);
+    $lab_id = $_POST['lab_id'] ?? 0;
+    $sessions = $_POST['selectedSessions'] ?? [];
 
-    // Execute the prepared statement
-    if ($stmt->execute()) {
-        
-        // Send a JSON response back (success message can be customized or a redirect can be handled here)
-        // echo json_encode(["success" => true, "message" => "Request successfully submitted!"]);
-    //     echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'>
-    // Swal.fire({
-    //     icon: 'error',
-    //     title: 'Error!',
-    //     text: 'Please fill out all fields and select up to 3 sessions.',
-    // });
-    // </script>";
-    header("Location: schedule-users copy.php");
-    } else {
-        // In case of an error, output the error for debugging
-        echo json_encode(["success" => false, "error" => $con->error]);
+    // Check if lab exists
+    if (!checkIfExists($con, "lab", "ID", $lab_id)) {
+        echo "Lab not found.";
+        exit;
     }
 
-    // Close the statement and the connection
+    // Prepare insert query for each session
+    $stmt = $con->prepare("INSERT INTO information (user_id, date, subject, generation, app, number_students, other, session_id, lab_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+    $allInserted = true;
+    foreach ($sessions as $session) {
+        // Check if session exists
+        if (!checkIfExists($con, "session", "ID", $session)) {
+            echo "Session not found.";
+            $allInserted = false;
+            break;
+        }
+
+        // Insert record if session exists
+        $stmt->bind_param("issssisii", $user_id, $date, $subject, $generation, $app, $numberStudent, $other, $session, $lab_id);
+        if (!$stmt->execute()) {
+            $allInserted = false;
+            break;
+        }
+    }
+
     $stmt->close();
     $con->close();
 
+    // Redirect or show error
+    if ($allInserted) {
+        header("Location: schedule-user.php");
+        exit;
+    } else {
+        echo "Error submitting request.";
+    }
 } else {
-    // Handle invalid request methods
-    echo json_encode(["success" => false, "message" => "Invalid request method."]);
+    echo "Invalid request method.";
 }
 
-
+// Helper function to check existence in a table
+function checkIfExists($con, $table, $column, $value) {
+    $query = $con->prepare("SELECT COUNT(*) FROM $table WHERE $column = ?");
+    $query->bind_param("i", $value);
+    $query->execute();
+    $query->bind_result($exists);
+    $query->fetch();
+    $query->close();
+    return $exists > 0;
+}
+?>
