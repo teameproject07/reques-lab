@@ -294,7 +294,7 @@ button:hover {
     <nav>
         <ul>
             <li><a href="schedule-user.php">Home</a></li>
-            <li><a href="Contact.html">Contact</a></li>
+            <li><a href="Contact.php">Contact</a></li>
             <li><a href="About.html">About</a></li>
             <li><a href="Profile.php">Profile</a></li>
             <li>
@@ -308,7 +308,7 @@ button:hover {
 
 <main>
     <div class="card-container">
-        <a href="table-request-Afternoon.php">
+        <a href="b.php">
             <div class="card">
                 <img src="https://cdn-icons-png.flaticon.com/512/4675/4675642.png" alt="Lab Image">
                 <h2>Table Request</h2>
@@ -411,11 +411,7 @@ function resetForm() {
     document.getElementById("app").value = "";
     document.getElementById("numberStudent").value = "";
     document.getElementById("other").value = "";
-<<<<<<< HEAD
-
-    // Clear selected sessions and Reset hidden input
-=======
->>>>>>> session3
+<<<<<<< Updated upstream
     selectedSessions = [];
 
     // Uncheck all session checkboxes
@@ -425,6 +421,10 @@ function resetForm() {
     });
 
     document.getElementById('selectedSessions').value = '';
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 }
 
 function limitSessionSelection(checkbox) {
