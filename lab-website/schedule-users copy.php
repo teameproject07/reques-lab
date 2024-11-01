@@ -199,7 +199,7 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #333;
+    background-color: #4b5057;
     color: #fff;
     padding: 15px;
     border-radius: 8px;
@@ -208,13 +208,17 @@ button:hover {
     text-align: center;
     user-select: none;
 }
+.session:hover{
+    background-color: #7caff2;
+}
 
 .session input[type="checkbox"] {
     display: none;
+    
 }
 
 .session input[type="checkbox"]:checked + label {
-    background-color: #555;
+    background-color: #945454;
 }
 
 /* Footer Styling */
