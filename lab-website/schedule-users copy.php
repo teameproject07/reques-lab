@@ -211,7 +211,10 @@ button:hover {
 .session:hover{
     background-color: #7caff2;
 }
-
+.session.selected{
+    background-color: #945454;
+    color: white;
+}
 .session input[type="checkbox"] {
     display: none;
     
@@ -409,6 +412,13 @@ function resetForm() {
     document.getElementById("numberStudent").value = "";
     document.getElementById("other").value = "";
     selectedSessions = [];
+
+   
+    document.querySelectorAll('.session-btn').forEach(function(button) {
+        button.classList.remove('selected');
+    });
+    
+
     document.querySelectorAll('.session-inputs input[type="checkbox"]').forEach(checkbox => checkbox.checked = false);
     document.getElementById('selectedSessions').value = '';
 }
