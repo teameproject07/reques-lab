@@ -493,7 +493,7 @@ function resetForm() {
     document.getElementById("numberStudent").value = "";
     document.getElementById("other").value = "";
 
-    // Clear selected sessions
+    // Clear selected sessions and Reset hidden input
     selectedSessions = [];
     document.querySelectorAll('.session-btn').forEach(function(button) {
         button.classList.remove('selected');

@@ -484,12 +484,13 @@ function resetForm() {
     document.getElementById("numberStudent").value = "";
     document.getElementById("other").value = "";
 
-    // Clear selected sessions
-    selectedSessions = [];
-    document.querySelectorAll('.session-btn').forEach(function(button) {
-        button.classList.remove('selected');
+   
+    document.querySelectorAll('.session-inputs').forEach(function(input) {
+        input.classList.remove('selected');
+
     });
     document.getElementById('selectedSessions').value = ''; // Reset hidden input
+
 
 }
 
