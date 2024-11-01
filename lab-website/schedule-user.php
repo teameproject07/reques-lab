@@ -17,6 +17,7 @@ require "db_connection.php"; // Include your database connection
     <title>Lab Requests</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="style/schedule-user.css">
+<<<<<<< Updated upstream
     <style>
 /* Reset styles */
 * {
@@ -287,6 +288,9 @@ button:hover {
 }
 
     </style>
+=======
+
+>>>>>>> Stashed changes
 </head>
 <body>
 <header class="site-header">
@@ -294,8 +298,13 @@ button:hover {
     <nav>
         <ul>
             <li><a href="schedule-user.php">Home</a></li>
+<<<<<<< Updated upstream
             <li><a href="Contact.php">Contact</a></li>
             <li><a href="About.php">About</a></li>
+=======
+            <li><a href="Contact.html">Contact</a></li>
+            <li><a href="About.html">About</a></li>
+>>>>>>> Stashed changes
             <li><a href="Profile.php">Profile</a></li>
             <li>
                 <form action="logout.php" method="post">
@@ -308,7 +317,11 @@ button:hover {
 
 <main>
     <div class="card-container">
+<<<<<<< Updated upstream
         <a href="table-request-Afternoon.php">
+=======
+        <a href="table-request-morning.php">
+>>>>>>> Stashed changes
             <div class="card">
                 <img src="https://cdn-icons-png.flaticon.com/512/4675/4675642.png" alt="Lab Image">
                 <h2>Table Request</h2>
@@ -379,9 +392,13 @@ button:hover {
             6
         </label>
     </div>
+<<<<<<< Updated upstream
 </div>
 
             
+=======
+</div>    
+>>>>>>> Stashed changes
             <input type="hidden" id="selectedSessions" >
             <button type="submit" class="submit">Submit</button>
         </form>
