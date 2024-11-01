@@ -287,7 +287,6 @@ button:hover {
 }
 
     </style>
-
 </head>
 <body>
 <header class="site-header">
@@ -295,9 +294,8 @@ button:hover {
     <nav>
         <ul>
             <li><a href="schedule-user.php">Home</a></li>
-            <li><a href="Contact.php">Contact</a></li>
-            <li><a href="About.php">About</a></li>
-
+            <li><a href="Contact.html">Contact</a></li>
+            <li><a href="About.html">About</a></li>
             <li><a href="Profile.php">Profile</a></li>
             <li>
                 <form action="logout.php" method="post">
@@ -310,7 +308,7 @@ button:hover {
 
 <main>
     <div class="card-container">
-        <a href="table-request-morning.php">
+        <a href="table-request-Afternoon.php">
             <div class="card">
                 <img src="https://cdn-icons-png.flaticon.com/512/4675/4675642.png" alt="Lab Image">
                 <h2>Table Request</h2>
@@ -380,14 +378,10 @@ button:hover {
             <input type="checkbox" name="selectedSessions[]" value="6" onclick="limitSelection(this)">
             6
         </label>
-        </div>
-
-        </div>
+    </div>
+</div>
 
             
-
-        </div>    
-
             <input type="hidden" id="selectedSessions" >
             <button type="submit" class="submit">Submit</button>
         </form>
