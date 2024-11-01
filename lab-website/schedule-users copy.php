@@ -1,12 +1,12 @@
 <?php
 
 require "db_connection.php"; // Include your database connection
-session_start();
-$username = $_SESSION['username'] ?? ''; // Fetch username from session
-if (empty($username)) {
-    echo "Session username not set or empty.";
-    exit;
-}
+// session_start();
+// $username = $_SESSION['username'] ?? ''; // Fetch username from session
+// if (empty($username)) {
+//     echo "Session username not set or empty.";
+//     exit;
+// }
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +18,7 @@ if (empty($username)) {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="style/schedule-user.css">
     <style>
-        /* Reset some default styles */
+/* Reset styles */
 * {
     margin: 0;
     padding: 0;
@@ -27,29 +27,55 @@ if (empty($username)) {
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    background-color: #f4f4f4;
     color: #333;
+    line-height: 1.6;
 }
 
-/* Header Styling */
+/* Container setup */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+/* Anchor and Button Styles */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-size: 1.1rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+button:hover {
+    color: #FFD700;
+}
+
+/* Header Styles */
 .site-header {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
+    background-color: #4CAF50;
+    padding: 15px 0;
     text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .site-header h1 {
-    font-size: 2em;
+    color: white;
+    font-size: 2rem;
+    font-weight: 600;
 }
 
 .site-header nav ul {
-    list-style-type: none;
-    margin: 20px 0 0;
-    padding: 0;
+    list-style: none;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
 }
 
 .site-header nav ul li {
@@ -57,237 +83,202 @@ body {
 }
 
 .site-header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.1em;
-    transition: color 0.3s;
+    color: white;
+    font-size: 1.1rem;
 }
 
 .site-header nav ul li a:hover {
-    color: #ddd;
+    color: #FFD700;
 }
 
-.site-header form button {
-    background: #555;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: background 0.3s;
+/* Profile Card */
+.profile-card {
+    max-width: 600px;
+    margin: 30px auto;
+    background-color: #888686;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
-.site-header form button:hover {
-    background: #777;
-}
-
-/* Card Container Styling */
+/* Card Styles */
 .card-container {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
-    padding: 20px;
+    flex-wrap: wrap;
+    padding: 2em;
+    gap: 2em;
 }
 
 .card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    background: white;
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    width: 250px;
+    padding: 1em;
     text-align: center;
-    width: 200px;
-    transition: transform 0.3s;
-    cursor: pointer;
-}
-
-.card:hover {
-    transform: scale(1.05);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .card img {
-    width: 100%;
-    height: auto;
+    max-width: 150px;
+    margin-bottom: 1em;
 }
 
 .card h2 {
-    margin: 10px 0;
-    padding: 10px;
-    font-size: 1.2em;
-    color: #333;
+    font-size: 1.4em;
+    margin-bottom: 0.5em;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Modal Styling */
 .modal {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background-color: #fff;
-    padding: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     border-radius: 8px;
     width: 90%;
-    max-width: 400px;
-    position: relative;
-    text-align: center;
+    max-width: 500px;
+    padding: 2em;
+    z-index: 1000;
 }
 
 .modal-content h2 {
-    margin-bottom: 20px;
-    color: #333;
+    margin-bottom: 1em;
+}
+
+.modal input {
+    width: 100%;
+    padding: 0.8em;
+    margin: 0.5em 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.modal button {
+    padding: 0.8em 1.2em;
+    background-color: #333;
+    color: white;
+    border-radius: 4px;
 }
 
 .close-btn {
     position: absolute;
     top: 10px;
-    right: 10px;
+    right: 20px;
     font-size: 1.5em;
-    color: #333;
     cursor: pointer;
 }
 
-
-
-/* Form Styling */
-#labRequestForm p {
-    margin-bottom: 10px;
-    font-size: 1em;
-    color: #555;
+/* Session Button Styling */
+.session-container {
+    font-family: Arial, sans-serif;
 }
 
-#labRequestForm input[type="text"],
-#labRequestForm input[type="date"],
-#labRequestForm input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+.session-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
 }
 
-#labRequestForm .session-inputs {
-    display: flex;
-    justify-content: center;
+.session-inputs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    margin: 10px 0;
 }
 
-#labRequestForm .session-inputs input[type="checkbox"] {
-    transform: scale(1.2);
-    cursor: pointer;
-}
-
-#labRequestForm .submit {
+.session {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #333;
     color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
+    padding: 15px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s;
+    font-size: 1rem;
+    text-align: center;
+    user-select: none;
 }
 
-#labRequestForm .submit:hover {
+.session input[type="checkbox"] {
+    display: none;
+}
+
+.session input[type="checkbox"]:checked + label {
     background-color: #555;
 }
 
 /* Footer Styling */
 .site-footer {
-    background-color: #333;
-    color: #fff;
     text-align: center;
-    padding: 15px 0;
-    position: relative;
-    bottom: 0;
+    padding: 15px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1rem;
+    position: fixed;
     width: 100%;
-    margin-top: 20px;
+    bottom: 0;
 }
 
-.site-footer p {
-    font-size: 1em;
-    color: #aaa;
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-    .site-header nav ul {
-        flex-direction: column;
-    }
-    .site-header nav ul li {
-        margin: 10px 0;
-    }
+/* Responsive Styles */
+@media (max-width: 600px) {
     .card-container {
         flex-direction: column;
         align-items: center;
     }
-    .card {
-        width: 100%;
-        max-width: 250px;
+
+    .modal {
+        width: 95%;
     }
-    .modal-content {
-        width: 90%;
-        max-width: 350px;
+
+    .session-inputs {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
     }
 }
 
-@media (max-width: 480px) {
-    .site-header h1 {
-        font-size: 1.5em;
+@media (min-width: 601px) and (max-width: 768px) {
+    .card-container {
+        justify-content: space-evenly;
     }
-    .site-header nav ul li a {
-        font-size: 1em;
-    }
-    .card {
-        width: 100%;
-        max-width: 200px;
-    }
-    .modal-content {
-        width: 90%;
-        padding: 15px;
-    }
-    #labRequestForm input[type="text"],
-    #labRequestForm input[type="date"],
-    #labRequestForm input[type="number"] {
-        padding: 8px;
-    }
-    #labRequestForm .submit {
-        padding: 8px 16px;
+
+    .modal {
+        width: 80%;
+        max-width: 600px;
     }
 }
 
-        .container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    max-width: 300px;
-    margin: 0 auto;
-  }
-  
-  .session-button {
-    flex: 1 1 30%;
-    padding: 15px;
-    background-color: #333;
-    color: white;
-    border: none;
-    text-align: center;
-    cursor: pointer;
-  }
-  
-  .session-button input[type="checkbox"] {
-    display: none;
-  }
-  
-  .session-button.selected {
-    background-color: #555;
-  }
+@media (min-width: 769px) and (max-width: 1024px) {
+    .card-container {
+        justify-content: space-between;
+    }
+
+    .modal {
+        width: 75%;
+        max-width: 700px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .card-container {
+        justify-content: center;
+    }
+
+    .modal {
+        width: 60%;
+        max-width: 700px;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -295,7 +286,7 @@ body {
     <h1>Lab Access Requests</h1>
     <nav>
         <ul>
-            <li><a href="schedule-users copy.php">Home</a></li>
+            <li><a href="schedule-user.php">Home</a></li>
             <li><a href="Contact.php">Contact</a></li>
             <li><a href="About.html">About</a></li>
             <li><a href="Profile.php">Profile</a></li>
@@ -342,7 +333,7 @@ body {
         <h2>Request Lab Access</h2>
         <span class="close-btn" aria-label="Close" onclick="closeCustomAlert()">&times;</span>
         
-        <form id="labRequestForm" action="submit-request copy.php" method="post">
+        <form id="labRequestForm" action="submit-request.php" method="post">
             <p>Please enter your information to request access:</p>
             <input type="hidden" id="lab_id" name="lab_id">
             <input type="date" id="date" name="date" required>
@@ -353,35 +344,38 @@ body {
             <input type="text" id="other" name="other" placeholder="Other...">
 
             <!-- Session Selection Buttons -->
-            <h3>Select Session (Max 3)</h3>
-<div class="container">
-  <label class="session-button" id="session1">
-    1
-    <input type="checkbox" name="selectedSessions[]" value="1" onclick="limitSelection(this)">
-  </label>
-  <label class="session-button" id="session2">
-    2
-    <input type="checkbox" name="selectedSessions[]" value="2" onclick="limitSelection(this)">
-  </label>
-  <label class="session-button" id="session3">
-    3
-    <input type="checkbox" name="selectedSessions[]" value="3" onclick="limitSelection(this)">
-  </label>
-  <label class="session-button" id="session4">
-    4
-    <input type="checkbox" name="selectedSessions[]" value="4" onclick="limitSelection(this)">
-  </label>
-  <label class="session-button" id="session5">
-    5
-    <input type="checkbox" name="selectedSessions[]" value="5" onclick="limitSelection(this)">
-  </label>
-  <label class="session-button" id="session6">
-    6
-    <input type="checkbox" name="selectedSessions[]" value="6" onclick="limitSelection(this)">
-  </label>
+            <div class="session-container">
+    <label>Select Session (Max 3)</label>
+    <div class="session-inputs">
+        <label class="session">
+            <input type="checkbox" name="selectedSessions[]" value="1" onclick="limitSelection(this)">
+            1
+        </label>
+        <label class="session">
+            <input type="checkbox" name="selectedSessions[]" value="2" onclick="limitSelection(this)">
+            2
+        </label>
+        <label class="session">
+            <input type="checkbox" name="selectedSessions[]" value="3" onclick="limitSelection(this)">
+            3
+        </label>
+        <label class="session">
+            <input type="checkbox" name="selectedSessions[]" value="4" onclick="limitSelection(this)">
+            4
+        </label>
+        <label class="session">
+            <input type="checkbox" name="selectedSessions[]" value="5" onclick="limitSelection(this)">
+            5
+        </label>
+        <label class="session">
+            <input type="checkbox" name="selectedSessions[]" value="6" onclick="limitSelection(this)">
+            6
+        </label>
+    </div>
 </div>
+
             
-            <input type="hidden" id="selectedSessions">
+            <input type="hidden" id="selectedSessions" >
             <button type="submit" class="submit">Submit</button>
         </form>
     </div>
