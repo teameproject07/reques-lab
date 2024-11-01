@@ -411,6 +411,7 @@ function resetForm() {
     document.getElementById("app").value = "";
     document.getElementById("numberStudent").value = "";
     document.getElementById("other").value = "";
+<<<<<<< Updated upstream
     selectedSessions = [];
 
     // Uncheck all session checkboxes
@@ -418,8 +419,22 @@ function resetForm() {
         checkbox.checked = false;
         checkbox.closest('label').classList.remove('selected');
     });
+=======
+
+
+   
+    document.querySelectorAll('.session-inputs').forEach(function(input) {
+        input.classList.remove('selected');
+
+
+    selectedSessions = [];
+>>>>>>> Stashed changes
 
     document.getElementById('selectedSessions').value = '';
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 }
 
 function limitSessionSelection(checkbox) {
