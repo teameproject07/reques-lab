@@ -412,23 +412,47 @@ function resetForm() {
     document.getElementById("numberStudent").value = "";
     document.getElementById("other").value = "";
 <<<<<<< HEAD
+<<<<<<< HEAD
 
    
     document.querySelectorAll('.session-inputs').forEach(function(input) {
         input.classList.remove('selected');
 
 =======
+=======
+<<<<<<< Updated upstream
+>>>>>>> session-1
     selectedSessions = [];
 
    
     document.querySelectorAll('.session-btn').forEach(function(button) {
         button.classList.remove('selected');
     });
+<<<<<<< HEAD
     
+=======
+=======
+
+
+   
+    document.querySelectorAll('.session-inputs').forEach(function(input) {
+        input.classList.remove('selected');
+
+
+    selectedSessions = [];
+>>>>>>> Stashed changes
+>>>>>>> session-1
 
     document.querySelectorAll('.session-inputs input[type="checkbox"]').forEach(checkbox => checkbox.checked = false);
     document.getElementById('selectedSessions').value = '';
+<<<<<<< HEAD
 >>>>>>> session3
+=======
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
+>>>>>>> session-1
 }
 
 function limitSessionSelection(checkbox) {
