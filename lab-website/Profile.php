@@ -49,15 +49,15 @@ $con->close();
             <h1>My Profile Page</h1>
             <nav>
                 <ul>
-                        <li><a href="schedule-user.php">Home</a></li>
-                        <li><a href="Contact.php">Contact</a></li>
-                        <li><a href="About.html">About</a></li>
-                        <li><a href="Profile.php">Profile</a></li>
-                        <li>
-                            <form action="logout.php" method="post">
-                                <button type="submit">Logout</button>
-                            </form>
-                        </li>
+                <li><a href="schedule-user.php">Home</a></li>
+            <li><a href="Contact.php">Contact</a></li>
+            <li><a href="About.php">About</a></li>
+            <li><a href="Profile.php">Profile</a></li>
+            <li>
+                <form action="logout.php" method="post">
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
                     </ul>
             </nav>
         </div>
