@@ -419,16 +419,6 @@ function resetForm() {
         checkbox.checked = false;
         checkbox.closest('label').classList.remove('selected');
     });
-=======
-
-
-   
-    document.querySelectorAll('.session-inputs').forEach(function(input) {
-        input.classList.remove('selected');
-
-
-    selectedSessions = [];
->>>>>>> Stashed changes
 
     document.getElementById('selectedSessions').value = '';
 <<<<<<< Updated upstream
