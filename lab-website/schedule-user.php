@@ -7,6 +7,21 @@ require "db_connection.php"; // Include your database connection
 //     echo "Session username not set or empty.";
 //     exit;
 // }
+
+// Create a DateTime object for today
+$today = new DateTime();
+
+// Clone the object to calculate start date (Monday of the current week)
+$startDate = clone $today;
+$startDate->modify('monday this week');
+
+// Clone the object to calculate end date (Sunday of the current week)
+$endDate = clone $today;
+$endDate->modify('sunday this week');
+
+// Format the dates for the SQL query
+$startDateFormatted = $startDate->format('Y-m-d');
+$endDateFormatted = $endDate->format('Y-m-d');
 ?>
 
 <!DOCTYPE html>
@@ -308,7 +323,7 @@ button:hover {
 
 <main>
     <div class="card-container">
-        <a href="b.php">
+        <a href="table-request-morning.php">
             <div class="card">
                 <img src="https://cdn-icons-png.flaticon.com/512/4675/4675642.png" alt="Lab Image">
                 <h2>Table Request</h2>
@@ -339,7 +354,21 @@ button:hover {
     <div class="modal-content">
         <h2>Request Lab Access</h2>
         <span class="close-btn" aria-label="Close" onclick="closeCustomAlert()">&times;</span>
-        
+        <h3>
+                
+                <?php 
+                require_once "table-Afternoon-IT-NW.php";
+                if ($startDateFormatted === $endDateFormatted): ?>
+                    សម្រាប់ថ្ងៃទី <span class="date" style="color:red;"><?php echo $startDate->format('d'); ?></span> ខែ <span
+                        class="date" style="color:red;"><?php echo $startDate->format('m'); ?></span> ឆ្នាំ <span
+                        class="date" style="color:red;"><?php echo $startDate->format('Y'); ?></span>
+                <?php else: ?>
+                    សម្រាប់ថ្ងៃទី <span class="date" style="color:red;"><?php echo $startDate->format('d'); ?></span> ​ដល់ថ្ងៃទី <span
+                        class="date" style="color:red;"><?php echo $endDate->format('d'); ?></span> ខែ <span
+                        class="date" style="color:red;"><?php echo $endDate->format('m'); ?></span> ឆ្នាំ <span
+                        class="date" style="color:red;"><?php echo $endDate->format('Y'); ?></span>
+                <?php endif; ?>
+            </h3>
         <form id="labRequestForm" action="submit-request.php" method="post">
             <p>Please enter your information to request access:</p>
             <input type="hidden" id="lab_id" name="lab_id">
@@ -411,7 +440,7 @@ function resetForm() {
     document.getElementById("app").value = "";
     document.getElementById("numberStudent").value = "";
     document.getElementById("other").value = "";
-<<<<<<< Updated upstream
+
     selectedSessions = [];
 
     // Uncheck all session checkboxes
@@ -421,10 +450,6 @@ function resetForm() {
     });
 
     document.getElementById('selectedSessions').value = '';
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 }
 
 function limitSessionSelection(checkbox) {
