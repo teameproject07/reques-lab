@@ -1,12 +1,12 @@
 <?php
 
 require "db_connection.php"; // Include your database connection
-// session_start();
-// $username = $_SESSION['username'] ?? ''; // Fetch username from session
-// if (empty($username)) {
-//     echo "Session username not set or empty.";
-//     exit;
-// }
+session_start();
+$username = $_SESSION['username'] ?? ''; // Fetch username from session
+if (empty($username)) {
+    echo "Session username not set or empty.";
+    exit;
+}
 
 // Create a DateTime object for today
 $today = new DateTime();
