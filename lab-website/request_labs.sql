@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2024 at 07:56 AM
+-- Generation Time: Nov 02, 2024 at 03:16 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -34,17 +34,7 @@ CREATE TABLE `codes` (
   `expire` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `codes`
---
 
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `feedback`
---
 
 CREATE TABLE `feedback` (
   `ID` int(11) NOT NULL,
@@ -74,10 +64,7 @@ CREATE TABLE `information` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `information`
---
-
--- --------------------------------------------------------
+-- 
 
 --
 -- Table structure for table `lab`
@@ -146,7 +133,12 @@ CREATE TABLE `users` (
   `address` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `users`
+--
 
+-- Indexes for dumped tables
+--
 
 --
 -- Indexes for table `codes`
@@ -211,7 +203,7 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `information`
 --
 ALTER TABLE `information`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
 
 --
 -- AUTO_INCREMENT for table `lab`
