@@ -133,6 +133,7 @@ button:hover {
     padding: 1em;
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
 }
 
 .card img {
@@ -370,7 +371,7 @@ button:hover {
                 <?php endif; ?>
             </h3>
         <form id="labRequestForm" action="submit-request.php" method="post">
-            <p>Please enter your information to request access:</p>
+            <p>សូមបញ្ចូលព័ត៏មានសម្រាប់ស្នើរសុំប្រើប្រាស់សាលកុំព្យូទ័រ​ ៖</p>
             <input type="hidden" id="lab_id" name="lab_id">
             <input type="date" id="date" name="date" required>
             <input type="text" id="subject" name="subject" placeholder="Enter your subject" required>
