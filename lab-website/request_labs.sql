@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 21, 2024 at 08:53 AM
+-- Generation Time: Nov 02, 2024 at 03:16 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -34,22 +34,7 @@ CREATE TABLE `codes` (
   `expire` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `codes`
---
 
-INSERT INTO `codes` (`ID`, `email`, `code`, `expire`) VALUES
-(1, 'dongdarong0713@gmail.com', '651526', 0),
-(2, 'dongdarong0713@gmail.com', '808040', 1725972877),
-(3, 'dongdarong0713@gmail.com', '750629', 1726494727),
-(4, 'dongdarong0713@gmail.com', '140270', 1726495775),
-(5, 'konk4965@gmail.com', '835485', 1726496895);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `feedback`
---
 
 CREATE TABLE `feedback` (
   `ID` int(11) NOT NULL,
@@ -74,10 +59,12 @@ CREATE TABLE `information` (
   `app` varchar(100) DEFAULT NULL,
   `number_students` int(11) DEFAULT NULL,
   `subject` varchar(100) DEFAULT NULL,
-  `other` text DEFAULT NULL
+  `other` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
+--
+-- 
 
 --
 -- Table structure for table `lab`
@@ -95,10 +82,11 @@ CREATE TABLE `lab` (
 --
 
 INSERT INTO `lab` (`ID`, `name_lab`, `image-lab`, `lab_status`) VALUES
-(1, 'Lab014', '', ''),
-(2, 'Lab013', '', ''),
-(3, 'Lab010', '', ''),
-(4, 'Lab011', '', '');
+(1, 'Lab IT', 'https://cbx-prod.b-cdn.net/COLOURBOX47851339.jpg?width=800&height=800&quality=70', ''),
+(2, 'Lab013', 'https://st4.depositphotos.com/1001599/40602/v/450/depositphotos_406023562-stock-illustration-workplace-culture-abstract-concept-vector.jpg', ''),
+(3, 'Lab010', 'https://thumbs.dreamstime.com/b/computer-animation-abstract-concept-vector-illustration-graphic-software-cartoon-video-creation-character-design-game-art-creative-198851157.jpg', ''),
+(4, 'Lab civil', 'https://img.freepik.com/premium-vector/school-illustration_1086266-27248.jpg', ''),
+(5, 'Lab Network', 'https://img.freepik.com/premium-vector/school-illustration_1086266-27284.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -149,11 +137,6 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`ID`, `full_name`, `gender`, `subject`, `photo`, `type`, `username`, `email`, `password`, `DOB`, `phone`, `position`, `address`) VALUES
-(1, 'dongdarong', 'male', 'data', 'girl.jpg', 'user', 'hellomen', 'dongdarong0713@gmail.com', '$2y$10$3e/5d36VndeK9ymUmpIEPueByZmKKl.mwsBBKC9uicO4kQpCD18uO', '2000-09-16', '0935423167', 'student', 'BTB'),
-(2, 'limeng', 'F', 'student', 'grile.jpg', 'admin', 'hengheng', 'konk4965@gmail.com', '$2y$10$23KSTLHMVsNmadqSuFwLMe5g.ZPhB71HkFrhh0sGmIHTVaqiUTSHK', '2000-09-30', '097654321', 'student', 'SR');
-
---
 -- Indexes for dumped tables
 --
 
@@ -208,7 +191,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `codes`
 --
 ALTER TABLE `codes`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `feedback`
@@ -220,13 +203,13 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `information`
 --
 ALTER TABLE `information`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
 
 --
 -- AUTO_INCREMENT for table `lab`
 --
 ALTER TABLE `lab`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `session`
@@ -238,7 +221,7 @@ ALTER TABLE `session`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
