@@ -1,11 +1,11 @@
 <?php
 // Check for logged-in user
-if (isset($_SESSION['username'])) {
-    $username = $_SESSION['username'];
-} else {
-    echo "Please log in to submit a lab request.";
-    exit;
-}
+// if (isset($_SESSION['username'])) {
+//     $username = $_SESSION['username'];
+// } else {
+//     echo "Please log in to submit a lab request.";
+//     exit;
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
