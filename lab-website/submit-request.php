@@ -66,6 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Redirect or show error
     if ($allInserted) {
         header("Location: schedule-user.php");
+        echo"<script>Swal.fire('Ok');</script>";
         exit;
     } else {
         echo "Error submitting request.";
